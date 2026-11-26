@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1060" height="218" viewBox="0 0 1060 218" role="img" font-family="system-ui,sans-serif">
+<title>夜間集計の結果。売上と配送は成功し、在庫は失敗した</title>
+<path d="M18 20 L335 20" stroke="#556166" stroke-width="2" fill="none"/>
+<g transform="translate(34 49) scale(1.45)" stroke="#293135" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" fill="none"><path d="M8 4h38v45l-6-4-5 4-6-4-6 4-5-4-5 4-5-4z M17 16h20 M17 23h12 M17 33h20"/></g>
+<text x="133" y="94" fill="#293135" font-size="36" font-weight="600" text-anchor="start">売上</text>
+<circle cx="56" cy="175" r="18" fill="white" stroke="#556166" stroke-width="2"/><path d="M56 175 m-8 0 6 6 11-13" stroke="#293135" stroke-width="2.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="94" y="184" fill="#556166" font-size="25" font-weight="400" text-anchor="start">集計済み</text>
+<path d="M369 20 L686 20" stroke="#556166" stroke-width="2" fill="none"/>
+<g transform="translate(385 49) scale(1.45)" stroke="#293135" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" fill="none"><path d="m5 15 22-11 22 11v25L27 51 5 40z M5 15l22 11 22-11 M27 26v25 M16 10l22 11v10"/></g>
+<text x="484" y="94" fill="#293135" font-size="36" font-weight="600" text-anchor="start">在庫</text>
+<circle cx="407" cy="175" r="18" fill="white" stroke="#556166" stroke-width="2"/><path d="M407 175 m-6-6 12 12 m0-12-12 12" stroke="#293135" stroke-width="2.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="445" y="184" fill="#556166" font-size="25" font-weight="400" text-anchor="start">読み込み失敗</text>
+<path d="M720 20 L1037 20" stroke="#556166" stroke-width="2" fill="none"/>
+<g transform="translate(736 49) scale(1.45)" stroke="#293135" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" fill="none"><path d="M4 13h28v25H4z M32 21h10l8 10v7h-5 M33 38h3 M35 24v7h12"/><circle cx="13" cy="39" r="5"/><circle cx="40" cy="39" r="5"/></g>
+<text x="835" y="94" fill="#293135" font-size="36" font-weight="600" text-anchor="start">配送</text>
+<circle cx="758" cy="175" r="18" fill="white" stroke="#556166" stroke-width="2"/><path d="M758 175 m-8 0 6 6 11-13" stroke="#293135" stroke-width="2.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="796" y="184" fill="#556166" font-size="25" font-weight="400" text-anchor="start">集計済み</text>
+
+<style data-jinno-palette="dark" media="(prefers-color-scheme: dark)">
+:root [fill="#293135" i]:not(svg svg, svg svg *, [data-fixed-color], [data-fixed-color] *) { fill: #3b2d45 }
+:root [fill="#556166" i]:not(svg svg, svg svg *, [data-fixed-color], [data-fixed-color] *) { fill: #675a70 }
+:root [stroke="#293135" i]:not(svg svg, svg svg *, [data-fixed-color], [data-fixed-color] *) { stroke: #3b2d45 }
+:root [stroke="#556166" i]:not(svg svg, svg svg *, [data-fixed-color], [data-fixed-color] *) { stroke: #675a70 }
+</style>
+</svg>

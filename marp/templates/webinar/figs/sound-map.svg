@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1072" height="328" viewBox="0 0 1072 328" role="img" font-family="sans-serif">
+<title>雨が続く30秒間の最初と最後に足音が重なる</title>
+<text x="68" y="54" fill="#3a3f44" text-anchor="start" font-size="27" font-weight="700">傘をたたく雨</text>
+<rect x="68" y="73" width="936" height="50" rx="4" fill="#e5edef"/>
+<text x="86" y="107" fill="#2f6273" text-anchor="start" font-size="23" font-weight="400">録音中ずっと続く</text>
+<text x="68" y="177" fill="#3a3f44" text-anchor="start" font-size="27" font-weight="700">足音</text>
+<rect x="68" y="195" width="249.60000000000002" height="53" rx="4" fill="#69727a"/>
+<rect x="754.4" y="195" width="249.60000000000002" height="53" rx="4" fill="#69727a"/>
+<text x="86" y="231" fill="white" text-anchor="start" font-size="24" font-weight="400">歩く</text>
+<text x="772.4" y="231" fill="white" text-anchor="start" font-size="24" font-weight="400">また歩く</text>
+<text x="536.0" y="231" fill="#3a3f44" text-anchor="middle" font-size="24" font-weight="400">立ち止まる</text>
+<line x1="68" y1="266" x2="1004" y2="266" stroke="#c9d0d5" stroke-width="2"/>
+<line x1="68.0" y1="266" x2="68.0" y2="275" stroke="#69727a" stroke-width="2"/>
+<text x="68.0" y="304" fill="#3a3f44" text-anchor="middle" font-size="22" font-weight="400">0秒</text>
+<line x1="317.6" y1="266" x2="317.6" y2="275" stroke="#69727a" stroke-width="2"/>
+<text x="317.6" y="304" fill="#3a3f44" text-anchor="middle" font-size="22" font-weight="400">8秒</text>
+<line x1="754.4" y1="266" x2="754.4" y2="275" stroke="#69727a" stroke-width="2"/>
+<text x="754.4" y="304" fill="#3a3f44" text-anchor="middle" font-size="22" font-weight="400">22秒</text>
+<line x1="1004.0" y1="266" x2="1004.0" y2="275" stroke="#69727a" stroke-width="2"/>
+<text x="1004.0" y="304" fill="#3a3f44" text-anchor="middle" font-size="22" font-weight="400">30秒</text>
+
+<style data-jinno-palette="dark" media="(prefers-color-scheme: dark)">
+:root [fill="#2f6273" i]:not(svg svg, svg svg *, [data-fixed-color], [data-fixed-color] *) { fill: #56346f }
+:root [fill="#3a3f44" i]:not(svg svg, svg svg *, [data-fixed-color], [data-fixed-color] *) { fill: #42344c }
+:root [fill="#69727a" i]:not(svg svg, svg svg *, [data-fixed-color], [data-fixed-color] *) { fill: #756a7c }
+:root [fill="#e5edef" i]:not(svg svg, svg svg *, [data-fixed-color], [data-fixed-color] *) { fill: #ede4f2 }
+:root [stroke="#69727a" i]:not(svg svg, svg svg *, [data-fixed-color], [data-fixed-color] *) { stroke: #756a7c }
+:root [stroke="#c9d0d5" i]:not(svg svg, svg svg *, [data-fixed-color], [data-fixed-color] *) { stroke: #d1c6d8 }
+</style>
+</svg>

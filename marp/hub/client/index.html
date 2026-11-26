@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<title>ライブラリー — Marp</title>
+<link rel="stylesheet" href="/hub.css">
+<link rel="manifest" href="/app/manifest.webmanifest">
+<link rel="icon" href="/app/icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/app/icon-192.png">
+<meta name="theme-color" content="#574789">
+</head>
+<body>
+<header id="top">
+  <span class="hb-brand">Marp ライブラリー</span>
+  <select id="lib-select" title="ライブラリー"></select>
+  <span class="hb-search"><input id="q" type="search" placeholder="タイトル・タグで探す（/）" autocomplete="off"></span>
+  <select id="sort" title="並べ替え">
+    <option value="updated">更新日が新しい順</option>
+    <option value="title">タイトル順</option>
+    <option value="pages">ページ数が多い順</option>
+  </select>
+  <span id="git-bar" class="hb-git"></span>
+  <span class="hb-new">
+    <button type="button" id="btn-new" class="hb-primary">＋ 新しい資料</button>
+    <span id="new-menu" class="hb-menu" hidden>
+      <button type="button" data-n="template">雛形から作る</button>
+      <button type="button" data-n="folder">フォルダから取り込む</button>
+      <hr>
+      <button type="button" data-n="library">ライブラリーを追加…</button>
+    </span>
+  </span>
+</header>
+<nav id="library-scope" aria-label="資料の表示"><button type="button" data-scope="active" class="is-on" aria-pressed="true">資料</button><button type="button" data-scope="archived" aria-pressed="false">アーカイブ</button></nav>
+<div id="filters" class="hb-filters"></div>
+<div id="banner" class="hb-banner" hidden></div>
+<main id="gallery"></main>
+<aside id="detail" hidden></aside>
+<div id="overlay" hidden></div>
+<div id="toast" hidden></div>
+<script type="module" src="/hub.js"></script>
+</body>
+</html>

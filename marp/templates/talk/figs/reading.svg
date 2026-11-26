@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1020 340" width="1020" height="340" role="img">
+  <title>本を読む、問いを書く、次の本を選ぶ。下は一冊目の例</title>
+  <rect x="20" y="16" width="270" height="136" rx="14" stroke="#b9c0c6" fill="#f4f5f7" />
+  <text x="155" y="76" fill="#293135" font-family="sans-serif" font-size="34" text-anchor="middle">読む</text>
+  <text x="155" y="122" fill="#293135" font-family="sans-serif" font-size="21" text-anchor="middle">気になったページ</text>
+  <path d="M303 84h51m-10 -8l10 8-10 8" stroke="#2f6273" fill="none" stroke-width="3" />
+  <path d="M155 152v32" stroke="#b9c0c6" fill="none" stroke-width="2" stroke-dasharray="5 5" />
+  <rect x="20" y="184" width="270" height="138" rx="10" stroke="#c9d0d5" fill="white" />
+  <text x="155" y="220" fill="#5f6b76" font-family="sans-serif" font-size="18" text-anchor="middle">読んだページ（例）</text>
+  <text x="155" y="268" fill="#293135" font-family="sans-serif" font-size="24" text-anchor="middle">草木の手帳 p.18</text>
+  <rect x="370" y="16" width="270" height="136" rx="14" stroke="#b9c0c6" fill="#f4f5f7" />
+  <text x="505" y="76" fill="#293135" font-family="sans-serif" font-size="34" text-anchor="middle">書き留める</text>
+  <text x="505" y="122" fill="#293135" font-family="sans-serif" font-size="21" text-anchor="middle">一行の問い</text>
+  <path d="M653 84h51m-10 -8l10 8-10 8" stroke="#2f6273" fill="none" stroke-width="3" />
+  <path d="M505 152v32" stroke="#b9c0c6" fill="none" stroke-width="2" stroke-dasharray="5 5" />
+  <rect x="370" y="184" width="270" height="138" rx="10" stroke="#c9d0d5" fill="white" />
+  <text x="505" y="220" fill="#5f6b76" font-family="sans-serif" font-size="18" text-anchor="middle">書いた問い（例）</text>
+  <text x="505" y="254" fill="#293135" font-family="sans-serif" font-size="24" text-anchor="middle">葉のつき方を</text>
+  <text x="505" y="286" fill="#293135" font-family="sans-serif" font-size="24" text-anchor="middle">見分けるには？</text>
+  <rect x="720" y="16" width="270" height="136" rx="14" stroke="#b9c0c6" fill="#f4f5f7" />
+  <text x="855" y="76" fill="#293135" font-family="sans-serif" font-size="34" text-anchor="middle">本棚で探す</text>
+  <text x="855" y="122" fill="#293135" font-family="sans-serif" font-size="21" text-anchor="middle">次の一冊</text>
+  <path d="M855 152v32" stroke="#b9c0c6" fill="none" stroke-width="2" stroke-dasharray="5 5" />
+  <rect x="720" y="184" width="270" height="138" rx="10" stroke="#c9d0d5" fill="white" />
+  <text x="855" y="220" fill="#5f6b76" font-family="sans-serif" font-size="18" text-anchor="middle">選んだ本（例）</text>
+  <text x="855" y="268" fill="#293135" font-family="sans-serif" font-size="24" text-anchor="middle">葉の形の図鑑</text>
+
+<style data-jinno-palette="dark" media="(prefers-color-scheme: dark)">
+:root [fill="#293135" i]:not(svg svg, svg svg *, [data-fixed-color], [data-fixed-color] *) { fill: #3b2d45 }
+:root [fill="#5f6b76" i]:not(svg svg, svg svg *, [data-fixed-color], [data-fixed-color] *) { fill: #70647a }
+:root [fill="#f4f5f7" i]:not(svg svg, svg svg *, [data-fixed-color], [data-fixed-color] *) { fill: #f3eff6 }
+:root [stroke="#2f6273" i]:not(svg svg, svg svg *, [data-fixed-color], [data-fixed-color] *) { stroke: #56346f }
+:root [stroke="#b9c0c6" i]:not(svg svg, svg svg *, [data-fixed-color], [data-fixed-color] *) { stroke: #c3b7ca }
+:root [stroke="#c9d0d5" i]:not(svg svg, svg svg *, [data-fixed-color], [data-fixed-color] *) { stroke: #d1c6d8 }
+</style>
+</svg>

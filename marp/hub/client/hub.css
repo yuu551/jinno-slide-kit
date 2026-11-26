@@ -1,0 +1,193 @@
+/* ライブラリー（ハブ）の画面 */
+:root {
+  --ink: #2f3337; --muted: #8a8f94; --line: #e6e8ea; --bg: #f5f6f7; --card: #fff; --accent: #574789; --accent-l: #f3f0f8;
+  --red: #d64545; --amber: #c98a1a; --green: #3b7d55; --blue: #4a90d9;
+  --shadow: 0 12px 36px rgba(20, 30, 40, .14), 0 2px 6px rgba(20, 30, 40, .06);
+  --font: system-ui, "Hiragino Sans", sans-serif;
+}
+html, body { margin: 0; min-height: 100%; background: var(--bg); color: var(--ink); font: 13px/1.5 var(--font); }
+button, select, input { font: inherit; color: inherit; }
+button { padding: 4px 11px; border: 1px solid #dcdcdc; border-radius: 6px; background: #fff; cursor: pointer; }
+button:hover:not(:disabled) { background: #f4f5f6; }
+button:disabled { opacity: .45; cursor: default; }
+button:focus-visible, input:focus-visible, select:focus-visible, .hb-card:focus-visible { outline: 2px solid var(--blue); outline-offset: 1px; }
+.hb-primary { background: var(--accent) !important; border-color: var(--accent) !important; color: #fff !important; }
+.hb-muted { color: var(--muted); }
+.hb-spacer { flex: 1; }
+.hb-sep { width: 1px; height: 18px; background: var(--line); margin: 0 4px; }
+.mj-ic { display: inline-block; vertical-align: -2px; }
+
+/* 上のバー */
+#top { position: sticky; top: 0; z-index: 20; height: 52px; display: flex; align-items: center; gap: 10px; padding: 0 18px; background: #fff; border-bottom: 1px solid var(--line); }
+.hb-brand { font-weight: 700; font-size: 14px; letter-spacing: .02em; white-space: nowrap; }
+#lib-select, #sort { max-width: 260px; padding: 4px 8px; border: 1px solid #dcdcdc; border-radius: 6px; background: #fff; }
+.hb-search input { width: 260px; padding: 5px 10px; border: 1px solid #dcdcdc; border-radius: 16px; background: #f7f8f9; }
+.hb-search input:focus { background: #fff; outline: 2px solid rgba(74,144,217,.5); outline-offset: 0; }
+.hb-check { display: inline-flex; align-items: center; gap: 4px; color: #555; white-space: nowrap; cursor: pointer; }
+.hb-git { display: inline-flex; align-items: center; gap: 6px; white-space: nowrap; }
+.hb-branch { color: #555; }
+.hb-sync { padding: 1px 7px; border-radius: 10px; background: #f0f2f3; color: #555; font-variant-numeric: tabular-nums; font-size: 12px; }
+.hb-sync.is-behind { background: #fff4df; color: var(--amber); }
+.hb-dirty { color: var(--amber); font-size: 12px; }
+.hb-new { position: relative; }
+.hb-menu { position: absolute; right: 0; top: 36px; z-index: 30; display: grid; width: 230px; padding: 5px; background: #fff; border: 1px solid var(--line); border-radius: 9px; box-shadow: var(--shadow); }
+.hb-menu[hidden] { display: none; }
+.hb-menu button { border: 0; text-align: left; padding: 7px 10px; }
+.hb-menu hr { margin: 4px 2px; border: 0; border-top: 1px solid var(--line); }
+
+/* 絞り込み */
+.hb-filters { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; padding: 12px 24px 0; }
+.hb-filters:empty { display: none; }
+.hb-chip { display: inline-flex; align-items: center; gap: 6px; padding: 3px 10px; border-radius: 14px; border-color: #e1e3e5; background: #fff; font-size: 12px; }
+.hb-chip span { color: var(--muted); font-size: 11px; }
+.hb-chip.is-on { background: var(--accent-l); border-color: #b8cfd7; color: var(--accent); }
+.hb-banner { margin: 12px 24px 0; padding: 10px 14px; border-radius: 8px; background: #fff8e6; border: 1px solid #f0dfb0; color: #7a5a10; }
+.hb-banner[hidden] { display: none; }
+
+/* ギャラリー */
+#gallery { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 22px; padding: 18px 24px 60px; transition: margin-right .2s; }
+body.with-detail #gallery { margin-right: min(760px, 58vw); }
+.hb-card { position: relative; display: flex; flex-direction: column; background: var(--card); border-radius: 10px; box-shadow: 0 1px 2px rgba(0,0,0,.05), 0 4px 14px rgba(0,0,0,.05); overflow: hidden; cursor: pointer; transition: transform .12s, box-shadow .12s; }
+.hb-card:hover { transform: translateY(-2px); box-shadow: 0 2px 4px rgba(0,0,0,.06), 0 12px 28px rgba(0,0,0,.09); }
+.hb-card.is-archived { opacity: .72; }
+.hb-cover { width: 100%; aspect-ratio: 16 / 9; background: #eceeef; border-bottom: 1px solid var(--line); }
+.hb-card-body { padding: 10px 14px 12px; }
+.hb-card-body h3 { margin: 0 0 3px; font-size: 14px; line-height: 1.45; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+.hb-meta { margin: 0; color: var(--muted); font-size: 12px; }
+.hb-tags { display: flex; flex-wrap: wrap; gap: 4px; margin: 6px 0 0; min-height: 0; }
+.hb-tags span { padding: 0 7px; border-radius: 9px; background: #f0f2f3; color: #555; font-size: 11px; }
+.hb-tags .hb-dirty { background: #fff4df; color: var(--amber); }
+.hb-tags .hb-arch { background: #eee; color: #777; }
+.hb-card-actions { position: absolute; left: 10px; right: 10px; top: 10px; display: none; gap: 6px; justify-content: flex-end; }
+.hb-card:hover .hb-card-actions, .hb-card:focus-within .hb-card-actions { display: flex; }
+.hb-card-actions button { padding: 3px 9px; background: rgba(255,255,255,.95); box-shadow: 0 2px 8px rgba(0,0,0,.12); border-color: transparent; font-size: 12px; }
+.hb-empty { grid-column: 1 / -1; display: grid; justify-items: center; gap: 8px; padding: 90px 20px; color: #555; text-align: center; }
+.hb-empty h2 { margin: 0; font-size: 18px; }
+.hb-empty div { display: flex; gap: 8px; margin-top: 10px; }
+
+/* 詳細（右のパネル） */
+#detail { position: fixed; top: 52px; right: 0; bottom: 0; z-index: 15; width: min(760px, 58vw); overflow-y: auto; background: #fff; border-left: 1px solid var(--line); box-shadow: -8px 0 30px rgba(0,0,0,.06); }
+#detail[hidden] { display: none; }
+.hb-detail-head { display: flex; gap: 12px; align-items: flex-start; padding: 16px 20px 6px; }
+.hb-detail-title h2 { margin: 0; font-size: 17px; line-height: 1.4; }
+.hb-detail-title p { margin: 2px 0 0; font-size: 12px; }
+.hb-close { flex: none; width: 30px; height: 30px; padding: 0; border: 0; font-size: 20px; line-height: 1; color: #777; }
+.hb-detail-actions { display: flex; flex-wrap: wrap; gap: 6px; padding: 8px 20px 12px; }
+.hb-tabs { position: sticky; top: 0; z-index: 2; display: flex; gap: 2px; padding: 0 20px; background: #fff; border-bottom: 1px solid var(--line); }
+.hb-tabs button { border: 0; border-bottom: 2px solid transparent; border-radius: 0; padding: 8px 12px; color: #666; background: transparent; }
+.hb-tabs button.is-on { border-bottom-color: var(--accent); color: var(--accent); font-weight: 600; }
+.hb-count { margin-left: 6px; padding: 0 6px; border-radius: 9px; background: #fff4df; color: var(--amber); font-size: 11px; }
+#detail-body { padding: 16px 20px 40px; }
+.hb-pages { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 14px; }
+.hb-page { margin: 0; }
+.hb-page-slide { width: 100%; aspect-ratio: 16 / 9; background: #eceeef; border-radius: 3px; box-shadow: 0 1px 3px rgba(0,0,0,.1); overflow: hidden; }
+.hb-page figcaption { margin-top: 3px; color: var(--muted); font-size: 11px; }
+.hb-panel { margin: 0 0 22px; }
+.hb-panel h3 { margin: 0 0 8px; font-size: 13px; }
+.hb-files { margin: 0 0 10px; padding: 0; list-style: none; display: grid; gap: 3px; max-height: 180px; overflow-y: auto; }
+.hb-files li { display: flex; gap: 8px; align-items: center; font-size: 12px; }
+.hb-kind { flex: none; padding: 0 6px; border-radius: 4px; font-size: 11px; }
+.hb-kind.is-added { background: #e6f4ea; color: var(--green); }
+.hb-kind.is-modified { background: #fff4df; color: var(--amber); }
+.hb-kind.is-deleted { background: #fdecec; color: var(--red); }
+.hb-commit { display: flex; gap: 8px; }
+.hb-commit input { flex: 1; padding: 6px 10px; border: 1px solid #dcdcdc; border-radius: 6px; }
+.hb-link { border: 0; padding: 0 4px; color: var(--accent); background: none; text-decoration: underline; }
+.hb-log { margin: 0; padding: 0; list-style: none; }
+.hb-log li { display: flex; gap: 10px; align-items: center; justify-content: space-between; padding: 9px 0; border-bottom: 1px solid #f0f1f2; }
+.hb-log li > div:first-child { display: grid; min-width: 0; }
+.hb-log b { font-weight: 600; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.hb-log .hb-muted, .hb-stat { font-size: 11.5px; }
+.hb-stat { color: #7b8a95; }
+.hb-log-actions { display: flex; gap: 6px; flex: none; }
+.hb-empty-small { display: grid; justify-items: start; gap: 8px; }
+
+/* 比較・ダイアログ */
+#overlay { position: fixed; inset: 0; z-index: 50; display: grid; place-items: center; background: rgba(30, 34, 38, .32); }
+#overlay[hidden] { display: none; }
+.hb-diff { width: min(1240px, 96vw); height: 92vh; display: flex; flex-direction: column; background: #fff; border-radius: 12px; box-shadow: var(--shadow); overflow: hidden; }
+.hb-diff-head { display: flex; align-items: center; gap: 12px; padding: 12px 18px; border-bottom: 1px solid var(--line); }
+.hb-diff-head h2 { margin: 0; font-size: 15px; }
+.hb-diff-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; padding: 8px 30px 0; color: var(--muted); font-size: 12px; }
+.hb-diff-list { flex: 1; overflow-y: auto; padding: 8px 30px 40px; background: #f7f8f9; }
+.hb-diff-row { margin: 14px 0; }
+.hb-diff-label { margin-bottom: 6px; font-size: 12px; font-weight: 600; }
+.hb-diff-row.is-mod .hb-diff-label { color: var(--amber); }
+.hb-diff-row.is-add .hb-diff-label { color: var(--green); }
+.hb-diff-row.is-del .hb-diff-label { color: var(--red); }
+.hb-diff-pair { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+.hb-diff-a, .hb-diff-b { min-height: 60px; border-radius: 3px; box-shadow: 0 1px 3px rgba(0,0,0,.1); background: #fff; }
+.hb-diff-row.is-mod .hb-diff-b, .hb-diff-row.is-add .hb-diff-b { outline: 2px solid rgba(59,125,85,.35); }
+.hb-diff-row.is-mod .hb-diff-a, .hb-diff-row.is-del .hb-diff-a { outline: 2px solid rgba(214,69,69,.3); }
+.hb-none { display: grid; place-items: center; height: 100%; min-height: 80px; color: var(--muted); }
+.hb-dialog { width: min(560px, 92vw); max-height: 86vh; overflow-y: auto; padding: 20px 22px; background: #fff; border-radius: 12px; box-shadow: var(--shadow); }
+.hb-dialog h2 { margin: 0 0 6px; font-size: 16px; }
+.hb-dialog p { margin: 0 0 12px; }
+.hb-field { display: grid; gap: 4px; margin: 0 0 12px; font-weight: 600; font-size: 12px; }
+.hb-field input, .hb-field select { padding: 7px 10px; border: 1px solid #dcdcdc; border-radius: 6px; font-weight: 400; font-size: 13px; }
+.hb-dialog-actions { display: flex; justify-content: flex-end; gap: 8px; margin-top: 8px; }
+
+#toast { position: fixed; left: 50%; bottom: 22px; transform: translateX(-50%); z-index: 90; padding: 8px 16px; border-radius: 8px; background: #333; color: #fff; font-size: 12.5px; box-shadow: 0 6px 20px rgba(0,0,0,.18); max-width: 80vw; }
+#toast.is-error { background: var(--red); }
+#toast[hidden] { display: none; }
+
+@media (max-width: 1100px) { .hb-search input { width: 170px; } .hb-check { display: none; } }
+
+#top button, #top select { white-space: nowrap; }
+
+
+/* 幅が狭いとき（B01）。1,100px 未満では題名を隠し、検索を縮める */
+@media (max-width: 1100px) {
+  #top { gap: 6px; padding: 0 10px; }
+  .hb-brand { display: none; }
+  .hb-search input { width: 200px; }
+  #lib-select { max-width: 170px; }
+  #sort { max-width: 150px; }
+}
+@media (max-width: 960px) {
+  .hb-search input { width: 150px; }
+  #sort { max-width: 120px; }
+}
+
+/* 共通ダイアログ（G05） */
+.mj-dialog-host { position: fixed; inset: 0; z-index: 400; }
+.mj-dialog-host[hidden] { display: none; }
+.mj-dialog-backdrop { position: absolute; inset: 0; display: grid; place-items: center; padding: 24px; background: rgba(30, 34, 38, .34); }
+.mj-dialog { width: min(460px, 92vw); max-height: calc(100vh - 48px); overflow: auto; background: #fff; border-radius: 12px; box-shadow: 0 24px 70px rgba(0,0,0,.28); padding: 20px 22px 16px; }
+.mj-dialog h2 { margin: 0 0 8px; font-size: 15px; }
+.mj-dialog-body { color: #4c5157; font-size: 12.5px; line-height: 1.7; }
+.mj-dialog-body p { margin: 0 0 8px; white-space: pre-wrap; }
+.mj-dialog footer { display: flex; justify-content: flex-end; gap: 8px; margin-top: 16px; }
+.mj-dialog footer button { min-width: 76px; padding: 5px 12px; }
+.mj-dialog .mj-primary { background: #187c78; border-color: #187c78; color: #fff; }
+.mj-dialog .is-danger { background: #c0392b !important; border-color: #c0392b !important; color: #fff !important; }
+.mj-dialog-field { display: grid; gap: 6px; margin: 8px 0 0; }
+.mj-dialog-field input { width: 100%; box-sizing: border-box; padding: 6px 9px; border: 1px solid #dcdcdc; border-radius: 7px; font: inherit; }
+
+#toast { display: flex; gap: 10px; align-items: center; }
+#toast .toast-action { background: rgba(255,255,255,.16); border: 1px solid rgba(255,255,255,.35); color: #fff; border-radius: 6px; padding: 3px 8px; font: inherit; cursor: pointer; }
+
+/* B01/B02: 同期をまとめ、資料とアーカイブを狭い幅でも切り替える。 */
+.hb-search { flex: 1; min-width: 160px; }
+#top .hb-search input { width: 100%; box-sizing: border-box; }
+#lib-select { max-width: 190px; }
+#top > .hb-new, #git-bar { flex: none; }
+#git-bar { position: relative; }
+#sync-menu { white-space: normal; gap: 4px; padding: 8px; }
+#sync-menu > span { padding: 0 8px; overflow-wrap: anywhere; }
+#library-scope { display: flex; gap: 2px; margin: 14px 24px 0; width: max-content; padding: 3px; background: #e8ecee; border-radius: 8px; }
+#library-scope button { border: 0; background: transparent; min-width: 88px; }
+#library-scope button.is-on { background: #fff; color: var(--accent); box-shadow: 0 1px 3px #0001; }
+@media (max-width: 1200px) { .hb-brand { display: none; } }
+
+.hb-card.is-selected { outline: 2px solid var(--accent); outline-offset: 2px; }
+#card-menu { position: fixed; z-index: 60; max-height: calc(100vh - 16px); overflow: auto; }
+
+.hb-dialog:has(.hb-template-grid) { width: min(800px, calc(100vw - 64px)); }
+.hb-template-grid { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 10px; margin: 16px 0; }
+.hb-template { padding: 0; min-width: 0; overflow: hidden; display: flex; flex-direction: column; align-items: stretch; }
+.hb-template b { padding: 6px; font-size: 12px; }
+.hb-template.is-on { border-color: var(--accent); outline: 2px solid var(--accent); }
+.hb-template-preview { display:block; width: 100%; aspect-ratio: 16/9; overflow: hidden; background: #fff; }
+.hb-dialog details { margin: 10px 0; }
+.hb-dialog summary { cursor: pointer; margin-bottom: 8px; }

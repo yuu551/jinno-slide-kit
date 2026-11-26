@@ -1,0 +1,5 @@
+{
+  "name": "update",
+  "description": "架空のクラウドサービスでジョブの再実行を試す8枚",
+  "defaultTitle": "失敗した集計だけを<br>再実行する"
+}

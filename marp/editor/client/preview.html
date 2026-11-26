@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<title>プレビュー</title>
+<!-- スライド内の画像（figs/…）はデッキのフォルダから読む。アプリ自身のURLは / から始める -->
+<base href="/deck/">
+<link rel="stylesheet" href="/preview.css">
+<style id="marp-css"></style>
+</head>
+<body class="pw" data-view="preview">
+<header class="pw-bar">
+  <strong id="pw-title">プレビュー</strong>
+  <span id="pw-status" class="pw-status"></span>
+  <span class="pw-spacer"></span>
+  <label class="pw-check"><input type="checkbox" id="pw-follow" checked> 追従<span class="pw-long">（変わったページへ移動）</span></label>
+  <label class="pw-check"><input type="checkbox" id="pw-notes"> ノート</label>
+  <span class="pw-seg" id="pw-cols"><button type="button" data-c="1">1列</button><button type="button" data-c="2">2列</button><button type="button" data-c="3">3列</button></span>
+  <a id="pw-edit" href="/" target="_blank" rel="noopener">編集</a>
+  <button type="button" id="pw-present">▶ 発表</button>
+</header>
+<main id="pw-list"></main>
+<script type="module" src="/present.js"></script>
+</body>
+</html>

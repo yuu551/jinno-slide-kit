@@ -1,0 +1,15 @@
+{
+  "name": "Marp ライブラリー",
+  "short_name": "Marp",
+  "description": "神野スライド（Marp）の資料をまとめて開く・編集する",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#4f426d",
+  "icons": [
+    { "src": "/app/icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "/app/icon-512.png", "sizes": "512x512", "type": "image/png" },
+    { "src": "/app/icon.svg", "sizes": "any", "type": "image/svg+xml" }
+  ]
+}

@@ -1,0 +1,29 @@
+[[permission]]
+identifier = "common-commands"
+description = "common の操作"
+commands.allow = ["settings_get", "settings_set", "hub_url", "open_library", "close_window", "close_window_now", "reveal_path", "node_status"]
+
+[[permission]]
+identifier = "editor-commands"
+description = "editor の操作"
+commands.allow = ["upload_image", "api_call", "open_editor", "open_present", "open_presenter", "open_preview", "close_window_cancel", "close_guard_ready", "deck_saved"]
+
+[[permission]]
+identifier = "library-commands"
+description = "library の操作"
+commands.allow = ["pick_library_folder", "hub_call", "open_editor", "open_present_for", "open_file_window", "close_deck"]
+
+[[permission]]
+identifier = "present-commands"
+description = "present の操作"
+commands.allow = ["api_call", "open_present", "open_presenter", "open_preview", "presentation_fullscreen"]
+
+[[permission]]
+identifier = "debug-commands"
+description = "debug の操作"
+commands.allow = ["debug_macos", "debug_export_panel", "debug_quit", "debug_reload_and_close", "debug_window_labels", "debug_inner_size", "parity_report", "log_report", "smoke_report"]
+
+[[permission]]
+identifier = "export-commands"
+description = "Rust が作った書き出し用画面だけの操作"
+commands.allow = ["native_job", "native_snapshot", "native_job_bytes"]

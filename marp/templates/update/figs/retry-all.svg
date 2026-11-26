@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1060" height="333" viewBox="0 0 1060 333" role="img" font-family="system-ui,sans-serif">
+<title>3件とも再実行する</title>
+<text x="24" y="38" fill="#556166" font-size="23" font-weight="400" text-anchor="start">集計</text>
+<text x="240" y="38" fill="#556166" font-size="23" font-weight="400" text-anchor="start">初回の結果</text>
+<text x="704" y="38" fill="#556166" font-size="23" font-weight="400" text-anchor="start">復旧後の操作</text>
+<path d="M20 58 L1036 58" stroke="#b9c2c4" stroke-width="2" fill="none"/>
+<text x="24" y="121" fill="#293135" font-size="30" font-weight="600" text-anchor="start">売上</text>
+<circle cx="256" cy="111" r="18" fill="white" stroke="#556166" stroke-width="2"/><path d="M256 111 m-8 0 6 6 11-13" stroke="#293135" stroke-width="2.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="298" y="120" fill="#293135" font-size="26" font-weight="400" text-anchor="start">成功</text>
+<path d="M507 111 L638 111" stroke="#556166" stroke-width="2" fill="none"/>
+<path d="m629 104 10 7-10 7" stroke="#556166" stroke-width="2" fill="none"/>
+<rect x="688" y="82" width="312" height="58" rx="6" fill="#edf0f0" stroke="#556166" stroke-width="2"/>
+<text x="710" y="120" fill="#293135" font-size="26" font-weight="600" text-anchor="start">再実行する</text>
+<text x="24" y="209" fill="#293135" font-size="30" font-weight="600" text-anchor="start">在庫</text>
+<circle cx="256" cy="199" r="18" fill="white" stroke="#556166" stroke-width="2"/><path d="M256 199 m-6-6 12 12 m0-12-12 12" stroke="#293135" stroke-width="2.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="298" y="208" fill="#293135" font-size="26" font-weight="400" text-anchor="start">読み込み失敗</text>
+<path d="M507 199 L638 199" stroke="#556166" stroke-width="2" fill="none"/>
+<path d="m629 192 10 7-10 7" stroke="#556166" stroke-width="2" fill="none"/>
+<rect x="688" y="170" width="312" height="58" rx="6" fill="#edf0f0" stroke="#556166" stroke-width="2"/>
+<text x="710" y="208" fill="#293135" font-size="26" font-weight="600" text-anchor="start">再実行する</text>
+<text x="24" y="297" fill="#293135" font-size="30" font-weight="600" text-anchor="start">配送</text>
+<circle cx="256" cy="287" r="18" fill="white" stroke="#556166" stroke-width="2"/><path d="M256 287 m-8 0 6 6 11-13" stroke="#293135" stroke-width="2.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="298" y="296" fill="#293135" font-size="26" font-weight="400" text-anchor="start">成功</text>
+<path d="M507 287 L638 287" stroke="#556166" stroke-width="2" fill="none"/>
+<path d="m629 280 10 7-10 7" stroke="#556166" stroke-width="2" fill="none"/>
+<rect x="688" y="258" width="312" height="58" rx="6" fill="#edf0f0" stroke="#556166" stroke-width="2"/>
+<text x="710" y="296" fill="#293135" font-size="26" font-weight="600" text-anchor="start">再実行する</text>
+
+<style data-jinno-palette="dark" media="(prefers-color-scheme: dark)">
+:root [fill="#293135" i]:not(svg svg, svg svg *, [data-fixed-color], [data-fixed-color] *) { fill: #3b2d45 }
+:root [fill="#556166" i]:not(svg svg, svg svg *, [data-fixed-color], [data-fixed-color] *) { fill: #675a70 }
+:root [stroke="#293135" i]:not(svg svg, svg svg *, [data-fixed-color], [data-fixed-color] *) { stroke: #3b2d45 }
+:root [stroke="#556166" i]:not(svg svg, svg svg *, [data-fixed-color], [data-fixed-color] *) { stroke: #675a70 }
+:root [stroke="#b9c2c4" i]:not(svg svg, svg svg *, [data-fixed-color], [data-fixed-color] *) { stroke: #c9bad3 }
+</style>
+</svg>

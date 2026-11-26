@@ -1,0 +1,19 @@
+saveExact: true
+
+allowBuilds:
+  core-js: false
+  esbuild: true
+
+overrides:
+  # Marp CLI 4 のブラウザー操作に、extract-zip・basic-ftp と旧版 Zod を外した依存ツリーを使う。
+  '@marp-team/marp-cli@4.5.1>puppeteer-core': 25.19.0
+  # Marp Core 4 が指定する KaTeX 0.17 系には修正版がない。
+  '@marp-team/marp-core@4.4.0>katex': 0.19.1
+  # PptxGenJS 4 の image-size 1.x に残る画像解析の脆弱性は 2.0.3 以降で修正された。
+  'pptxgenjs@4.0.1>image-size': 2.1.0
+
+minimumReleaseAgeExclude:
+  - '@codemirror/view@6.44.0'
+  - lucide@1.80.0
+  - '@puppeteer/browsers@3.3.0'
+  - puppeteer-core@25.19.0

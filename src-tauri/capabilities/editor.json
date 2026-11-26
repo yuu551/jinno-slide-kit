@@ -1,0 +1,13 @@
+{
+  "identifier": "editor",
+  "description": "editor の画面だけに許可する操作",
+  "local": true,
+  "windows": [
+    "editor-*"
+  ],
+  "permissions": [
+    "core:event:default",
+    "common-commands",
+    "editor-commands"
+  ]
+}

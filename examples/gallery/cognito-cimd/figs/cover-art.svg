@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="560" height="720" viewBox="0 0 560 720"><path d="M232 0L262 236M328 0L298 236" stroke="#4a8399" stroke-width="5" stroke-linecap="round" fill="none"/><rect x="110" y="228" width="340" height="372" rx="22" fill="#fff" stroke="#4a8399" stroke-width="3.5"/><rect x="250" y="250" width="60" height="14" rx="7" fill="#c9dde3"/><path d="M222 414Q222 370 280 370Q338 370 338 414Z" fill="#e7eff2" stroke="#4a8399" stroke-width="3" stroke-linejoin="round"/><circle cx="280" cy="322" r="38" fill="#e7eff2" stroke="#4a8399" stroke-width="3"/><rect x="146" y="446" width="268" height="52" rx="26" fill="#4a8399"/><rect x="166" y="466" width="16" height="14" rx="3" fill="#fff"/><path d="M169 466V461A5 5 0 0 1 179 461V466" fill="none" stroke="#fff" stroke-width="2.5"/><rect x="196" y="467" width="190" height="10" rx="5" fill="#fff" opacity="0.85"/><rect x="160" y="526" width="240" height="14" rx="7" fill="#c9dde3"/><rect x="160" y="556" width="168" height="14" rx="7" fill="#c9dde3"/>
+<style data-jinno-palette="dark" media="(prefers-color-scheme: dark)">
+:root [fill="#4a8399" i]:not(svg svg, svg svg *, [data-fixed-color], [data-fixed-color] *) { fill: #78549e }
+:root [fill="#c9dde3" i]:not(svg svg, svg svg *, [data-fixed-color], [data-fixed-color] *) { fill: #cfbcd9 }
+:root [fill="#e7eff2" i]:not(svg svg, svg svg *, [data-fixed-color], [data-fixed-color] *) { fill: #e9dff0 }
+:root [stroke="#4a8399" i]:not(svg svg, svg svg *, [data-fixed-color], [data-fixed-color] *) { stroke: #78549e }
+</style>
+</svg>

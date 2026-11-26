@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<title>発表者画面</title>
+<base href="/deck/">
+<link rel="stylesheet" href="/present.css">
+<style id="marp-css"></style>
+</head>
+<body class="pr" data-view="presenter">
+<header class="pr-head">
+  <div class="pr-title">
+    <span id="deck-name" class="pr-name"></span>
+    <span id="conn" class="pr-conn"></span>
+  </div>
+  <div id="timer-box" class="pr-meter">
+    <span class="pr-label">経過</span>
+    <span id="elapsed" class="pr-big">00:00</span>
+    <span class="pr-btns">
+      <button type="button" id="t-toggle" class="pr-btn">開始</button>
+      <button type="button" id="t-reset" class="pr-btn pr-quiet" title="経過時間を0に戻す">リセット</button>
+    </span>
+  </div>
+  <div id="remain-box" class="pr-meter">
+    <span id="remain-label" class="pr-label">残り</span>
+    <span id="remaining" class="pr-big">--:--</span>
+    <label class="pr-target">目標 <input id="target" type="number" min="1" max="600" step="1" inputmode="numeric" placeholder="—"> 分</label>
+  </div>
+  <div class="pr-meter pr-clock">
+    <span class="pr-label">現在時刻</span>
+    <span id="clock" class="pr-big">--:--</span>
+  </div>
+</header>
+<main class="pr-main">
+  <section id="current-wrap" class="pr-current">
+    <div class="pr-cap"><span>現在のスライド</span><span class="pr-page"><b id="page-cur">1</b><span class="pr-of">/ <span id="page-all">1</span></span></span></div>
+    <div class="pr-frame"><div id="current"></div><div id="blank-flag" class="pr-blank-flag" hidden></div></div>
+  </section>
+  <aside class="pr-side">
+    <section id="next-wrap" class="pr-next">
+      <div class="pr-cap"><span>次のスライド</span><span id="next-no" class="pr-muted"></span></div>
+      <div class="pr-frame"><div id="next"></div><div class="pr-end">最後のスライドです</div></div>
+    </section>
+    <section class="pr-notes">
+      <div class="pr-cap"><span>ノート</span>
+        <span class="pr-zoom">
+          <button type="button" id="note-smaller" class="pr-btn pr-quiet" title="文字を小さく" aria-label="文字を小さく">A−</button>
+          <span id="note-size" class="pr-muted"></span>
+          <button type="button" id="note-bigger" class="pr-btn pr-quiet" title="文字を大きく" aria-label="文字を大きく">A＋</button>
+        </span>
+      </div>
+      <div id="notes" class="pr-notes-body" tabindex="0"></div>
+    </section>
+  </aside>
+</main>
+<footer class="pr-foot">
+  <button type="button" id="prev" class="pr-btn pr-nav" title="前へ（←）">‹ 前へ</button>
+  <button type="button" id="next-btn" class="pr-btn pr-nav pr-primary" title="次へ（→）">次へ ›</button>
+  <div class="pr-progress" title="上：ページの進み　下：時間の進み（目標に対して）">
+    <span class="pr-bar"><i id="prog-page"></i></span>
+    <span class="pr-bar pr-bar-time"><i id="prog-time"></i></span>
+  </div>
+  <button type="button" id="grid-btn" class="pr-btn" title="スライドの一覧から選ぶ（G）">一覧</button>
+  <button type="button" id="black" class="pr-btn" title="発表画面を黒にする（B）">黒画面</button>
+  <button type="button" id="white" class="pr-btn" title="発表画面を白にする（W）">白画面</button>
+  <button type="button" id="print" class="pr-btn pr-quiet" title="ノート付きの一覧を印刷（P）">ノート一覧を印刷</button>
+  <button type="button" id="help-btn" class="pr-btn pr-quiet" title="操作一覧（?）">?</button>
+  <button type="button" id="open-present" class="pr-btn" title="発表画面を開く（S）">発表画面を開く</button>
+</footer>
+<div id="jump" class="pv-jump" hidden></div>
+<div id="grid" class="pr-grid" hidden>
+  <div class="pr-grid-head"><span>スライドの一覧</span><span class="pr-muted">クリックか矢印キー＋Enter で移動・Esc で閉じる</span></div>
+  <div id="grid-body" class="pr-grid-body"></div>
+</div>
+<div id="help" class="pv-help" hidden></div>
+<script type="module" src="/present.js"></script>
+</body>
+</html>

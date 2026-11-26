@@ -1,0 +1,34 @@
+/* プレビュー専用の画面 */
+html, body { margin: 0; height: 100%; }
+body.pw { background: #eef0f1; color: #333; font: 13px/1.5 -apple-system, BlinkMacSystemFont, "Hiragino Sans", sans-serif; overflow: hidden; }
+.pw-bar { position: sticky; top: 0; z-index: 5; height: 44px; display: flex; align-items: center; gap: 12px; padding: 0 16px; background: #fff; border-bottom: 1px solid #e3e5e7; box-sizing: border-box; }
+.pw-bar strong { max-width: 36vw; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.pw-status { color: #8a8f94; font-size: 12px; }
+.pw-spacer { flex: 1; }
+.pw-check { display: inline-flex; align-items: center; gap: 4px; color: #555; cursor: pointer; user-select: none; }
+.pw-seg { display: inline-flex; border: 1px solid #dcdcdc; border-radius: 6px; overflow: hidden; }
+.pw-seg button { border: 0; padding: 4px 9px; background: #fff; font: inherit; color: #555; cursor: pointer; }
+.pw-seg button + button { border-left: 1px solid #e3e3e3; }
+.pw-seg button.is-on { background: #f3f0f8; color: #574789; }
+.pw-bar a, .pw-bar > button { padding: 4px 11px; border: 1px solid #dcdcdc; border-radius: 6px; background: #fff; color: #333; font: inherit; text-decoration: none; cursor: pointer; }
+.pw-bar > button { border-color: #574789; background: #574789; color: #fff; }
+#pw-list { height: calc(100% - 44px); overflow-y: auto; box-sizing: border-box; padding: 20px 24px 60px; display: flex; flex-wrap: wrap; gap: 24px; align-content: flex-start; }
+.pw-page { display: grid; gap: 6px; }
+.pw-head a { color: #8a8f94; font-size: 12px; text-decoration: none; }
+.pw-frame { position: relative; overflow: hidden; background: #fff; box-shadow: 0 1px 2px rgba(0,0,0,.06), 0 6px 20px rgba(0,0,0,.07); border-radius: 2px; }
+.pw-scale { width: 1280px; height: 720px; transform-origin: 0 0; }
+.pw-note { max-width: 100%; padding: 8px 12px; background: #fff; border-radius: 6px; color: #444; font-size: 12.5px; white-space: normal; overflow-wrap: anywhere; }
+.pw-note[hidden] { display: none; }
+.pw-muted { color: #9aa0a5; }
+.pw-page.is-changed .pw-frame { animation: pw-flash 1.6s ease-out; }
+@keyframes pw-flash { 0% { box-shadow: 0 0 0 4px rgba(74, 144, 217, .9); } 100% { box-shadow: 0 0 0 4px rgba(74, 144, 217, 0), 0 6px 20px rgba(0,0,0,.07); } }
+/* 横に並べた狭いウィンドウでも1行に収める */
+.pw-bar > * { white-space: nowrap; flex-shrink: 0; }
+.pw-bar strong { flex-shrink: 1; min-width: 60px; }
+@media (max-width: 1100px) { .pw-status { display: none; } }
+@media (max-width: 900px) {
+  .pw-bar { gap: 8px; padding: 0 10px; }
+  .pw-check .pw-long { display: none; }
+  #pw-cols button[data-c="3"] { display: none; }
+}
+@media (max-width: 640px) { #pw-edit { display: none; } #pw-list { padding: 12px 12px 40px; gap: 16px; } }

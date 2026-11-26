@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="560" height="720" viewBox="0 0 560 720" role="img"><title>コマ送りで動く玉が最後の二コマで同じ位置にとどまる</title><rect x="86" y="176" width="178" height="178" rx="14" fill="#ffffff" stroke="#4a8399" stroke-width="3"/><rect x="108" y="324" width="134" height="6" rx="3" fill="#c9dde3"/><circle cx="130" cy="288" r="15" fill="#c9dde3"/><rect x="296" y="176" width="178" height="178" rx="14" fill="#ffffff" stroke="#4a8399" stroke-width="3"/><rect x="318" y="324" width="134" height="6" rx="3" fill="#c9dde3"/><circle cx="388" cy="246" r="15" fill="#c9dde3"/><rect x="86" y="386" width="178" height="178" rx="14" fill="#ffffff" stroke="#4a8399" stroke-width="3"/><rect x="108" y="534" width="134" height="6" rx="3" fill="#c9dde3"/><circle cx="216" cy="438" r="15" fill="#c9dde3"/><rect x="296" y="386" width="178" height="178" rx="14" fill="#ffffff" stroke="#4a8399" stroke-width="3"/><rect x="318" y="534" width="134" height="6" rx="3" fill="#c9dde3"/><circle cx="426" cy="438" r="15" fill="#4a8399"/>
+<style data-jinno-palette="dark" media="(prefers-color-scheme: dark)">
+:root [fill="#4a8399" i]:not(svg svg, svg svg *, [data-fixed-color], [data-fixed-color] *) { fill: #78549e }
+:root [fill="#c9dde3" i]:not(svg svg, svg svg *, [data-fixed-color], [data-fixed-color] *) { fill: #cfbcd9 }
+:root [stroke="#4a8399" i]:not(svg svg, svg svg *, [data-fixed-color], [data-fixed-color] *) { stroke: #78549e }
+</style>
+</svg>

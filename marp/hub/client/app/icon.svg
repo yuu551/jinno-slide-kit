@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <title>Jinno Slide Kit</title>
+  <rect width="512" height="512" fill="#4f426d" rx="104"/>
+  <rect x="85" y="108" width="342" height="245" rx="14" fill="#fff"/>
+  <path d="M126 169h140m-140 50h215m-215 45h175" fill="none" stroke="#4f426d" stroke-width="16"/>
+  <path d="M151 393h210" stroke="#fff" stroke-width="12"/>
+</svg>

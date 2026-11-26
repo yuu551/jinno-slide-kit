@@ -1,0 +1,41 @@
+/* @theme paper */
+/* @size 16:9 1280px 720px */
+@import 'petrol';
+
+/* 菫色の罫と藤色の面。本文は紫みのある墨に抑える。 */
+section {
+  --paper: #fcfafd;
+  --accent: #78549e;
+  --accent-d: #56346f;
+  --accent-l: #eee6f6;
+  --band: #f3eff5;
+  --rule: #d7ccdF;
+  --ink: #332c39;
+  --ink-2: #504557;
+  --ink-b: #432b53;
+  --muted: #736779;
+  --line: #594761;
+  --stage-color: #553469;
+}
+section img { color-scheme: only dark; }
+section:not(.cover, .divider, .closing) { background-color: var(--paper); }
+section.cover.classic:not(.cover-talk) { background-color: #eee8f2; }
+section.cover > h1, section.divider > h1 { color: var(--ink-b); }
+section.stage.cover:not(.cover-talk) > h1, section.stage.divider > h1 { color: white; }
+section.divider:not(.classic, .stage) {
+  background-image:
+    radial-gradient(circle at 1130px 360px, transparent 0 248px, #d8c8e3 248px 250px, transparent 251px),
+    radial-gradient(circle at 1130px 360px, transparent 0 168px, #e3d6eb 168px 170px, transparent 171px),
+    radial-gradient(circle, #d7c4e1 1.4px, transparent 1.6px);
+}
+section:not(.stage) > h1 { color: var(--ink-b); }
+section:not(.classic, .stage) th { color: var(--accent-d); border-bottom-color: var(--accent); }
+section:is(.classic, .stage) th { background: #594167; }
+section:is(.classic, .stage) :is(td, th) { border-color: var(--rule); }
+section:is(.classic, .stage) td:first-child { background: var(--band); }
+section .dialogue-bubble, section .speech-message { background: var(--band); }
+section .dialogue-row.is-right .dialogue-bubble { background: var(--accent-l); }
+section .speech-bubble .speech-message::after { border-top-color: var(--band); }
+section .code-window { background: #2f2339; }
+section .code-window .hljs-attr, section .code-window .hljs-variable { color: #d6b5f0; }
+section .code-window .hljs-comment { color: #b4a6be; }

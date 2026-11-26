@@ -1,0 +1,13 @@
+{
+  "identifier": "library",
+  "description": "library の画面だけに許可する操作",
+  "local": true,
+  "windows": [
+    "library"
+  ],
+  "permissions": [
+    "core:event:default",
+    "common-commands",
+    "library-commands"
+  ]
+}

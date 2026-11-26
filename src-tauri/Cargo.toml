@@ -1,0 +1,38 @@
+[package]
+name = "marp-native"
+version = "0.1.0"
+description = "Marp キットの macOS アプリ"
+authors = ["Yudai Jinno"]
+license = "MIT"
+edition = "2021"
+rust-version = "1.91"
+
+[lib]
+# Tauri の雛形と同じく、アプリの本体は lib に置いて main から呼ぶ
+name = "marp_native_lib"
+crate-type = ["staticlib", "cdylib", "rlib"]
+
+[build-dependencies]
+tauri-build = { version = "2", features = [] }
+
+[dependencies]
+sha2 = "0.11"
+regex = "1.13"
+unicode-normalization = "0.1"
+tauri = { version = "2", features = [] }
+serde = { version = "1", features = ["derive"] }
+serde_json = { version = "1", features = ["preserve_order"] }
+# SIGTERM を送ってから止めるため（macOS では Child::kill が SIGKILL になる）
+libc = "0.2"
+tauri-plugin-dialog = "2"
+notify = "9"
+lopdf = { version = "0.47", default-features = false }
+
+[target.'cfg(target_os = "macos")'.dependencies]
+block2 = "0.6.2"
+objc2 = "0.6.4"
+objc2-app-kit = "0.3.2"
+objc2-core-foundation = "0.3.2"
+objc2-foundation = "0.3.2"
+objc2-pdf-kit = "0.3.2"
+objc2-web-kit = "0.3.2"

@@ -1,0 +1,3 @@
+# Tauri が作るもの（Cargo.lock は残す）
+/target/
+/gen/

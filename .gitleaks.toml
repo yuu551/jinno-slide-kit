@@ -1,0 +1,12 @@
+[extend]
+useDefault = true
+
+[[rules]]
+id = "generic-api-key"
+
+[[rules.allowlists]]
+description = "Verified SHA-256 of examples/gallery/cognito-cimd/figs/token.svg"
+condition = "AND"
+paths = ['''(^|/)scripts/reviewed-images\.json$''']
+regexTarget = "match"
+regexes = ['''^token\.svg": "3eabb5a3651beb0fc2ca4457ef6960b31bb263c08a652c73621c0588bb892f05"$''']

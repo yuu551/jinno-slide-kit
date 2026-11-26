@@ -1,0 +1,15 @@
+{
+  "identifier": "present",
+  "description": "present の画面だけに許可する操作",
+  "local": true,
+  "windows": [
+    "present-*",
+    "presenter-*",
+    "preview-*"
+  ],
+  "permissions": [
+    "core:event:default",
+    "common-commands",
+    "present-commands"
+  ]
+}

@@ -1,0 +1,9 @@
+engine: ./marp/engine.mjs
+html: true
+allowLocalFiles: true
+options:
+  emoji:
+    shortcode: false
+    unicode: false
+  math: false
+  minifyCSS: false

@@ -1,0 +1,48 @@
+{
+  "name": "jinno-slide-kit",
+  "version": "1.0.0",
+  "description": "Markdown と SVG でスライドを作成・検査し、PDF・HTML・PowerPoint に書き出すキット",
+  "scripts": {
+    "slides": "node marp/bin/slides.mjs",
+    "check": "node marp/bin/slides.mjs check",
+    "build": "node marp/bin/slides.mjs build",
+    "edit": "node marp/editor/server.mjs",
+    "test:theme": "node scripts/dev/test-theme.mjs",
+    "test:present": "node marp/editor/test-present.mjs",
+    "test": "pnpm check:release && pnpm test:theme && pnpm test:render && pnpm test:check && pnpm test:present",
+    "cheatsheet": "node marp/scripts/cheatsheet-md.mjs",
+    "app:build": "tauri build",
+    "app:bundle": "node scripts/package-app.mjs",
+    "test:render": "node scripts/dev/test-render-cache.mjs",
+    "test:check": "node scripts/dev/test-check-parity.mjs",
+    "check:release": "uv run scripts/check-release.py"
+  },
+  "keywords": [],
+  "author": "Yudai Jinno <65840312+yuu551@users.noreply.github.com>",
+  "license": "MIT",
+  "engines": {
+    "node": ">=22.12.0"
+  },
+  "packageManager": "pnpm@12.23.0+sha512.02da94ffaf133f46074322afe552f90d40b5f71ae259aefbccdacc5085b1d617e98d65e0131f5748b9b67445978ee5055d7d59a473f1eef0d504854fefcd5975",
+  "devDependencies": {
+    "@codemirror/lang-markdown": "6.5.2",
+    "@codemirror/state": "6.7.6",
+    "@codemirror/view": "6.44.0",
+    "@marp-team/marp-cli": "4.5.1",
+    "@marp-team/marp-core": "4.4.0",
+    "codemirror": "6.0.2",
+    "esbuild": "0.28.2",
+    "jszip": "3.10.2",
+    "markdown-it-container": "4.0.0",
+    "playwright-core": "1.65.1",
+    "pptxgenjs": "4.0.1",
+    "svgedit": "7.4.2",
+    "@tauri-apps/api": "2.12.5",
+    "@tauri-apps/cli": "2.12.6",
+    "lucide": "1.80.0"
+  },
+  "private": true,
+  "bin": {
+    "slides": "marp/bin/slides.mjs"
+  }
+}

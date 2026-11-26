@@ -1,0 +1,1011 @@
+/* @theme petrol */
+/* @size 16:9 1280px 720px */
+@font-face { font-family: "Talk Sans"; font-weight: 400; font-display: block; src: url("assets/NotoSansJP-Book450.woff2") format("woff2"); }
+@font-face { font-family: "Talk Sans"; font-weight: 700; font-display: block; src: url("assets/NotoSansJP-Bold.woff2") format("woff2"); }
+@font-face { font-family: "Stage Sans"; font-weight: 400; font-display: block; src: url("assets/NotoSansJP-Regular.woff2") format("woff2"); }
+@font-face { font-family: "Stage Sans"; font-weight: 700; font-display: block; src: url("assets/NotoSansJP-Bold.woff2") format("woff2"); }
+
+/* ペトロール（青緑）の登壇用テーマ。
+
+   決まり（新しい部品もこれに合わせる）
+   - 地        白が基本。灰色の地（.band）は「背景」「課題」など、読み物として区切りたいページだけ
+   - 線        表や枠の罫線は細い灰色（--rule）。見出し行の下だけ墨の2px。黒い格子は使わない
+   - 強調      上の4pxの帯（--bar）。主役はアクセント、それ以外は墨。1ページに1か所
+   - 文字      タイトル40 ／ リード29 ／ 本文28 ／ 部品の見出し27 ／ 部品の本文22〜25 ／ 補足20（px）
+               太さは本文400・見出し700の2種類。見出しは字詰め（palt）で締める
+   - 英語の飾り（STEP 1 など）、通し番号（01・02）、アイコンの飾りは使わない
+   - 書体は Noto Sans JP（https://fonts.google.com/noto/specimen/Noto+Sans+JP）。無ければヒラギノ角ゴ */
+
+section:where(:not(.classic, .stage)) {
+  --accent: #4a8399;
+  --accent-d: #2f6273;
+  --accent-l: #edf4f6;
+  --ink: #1f2328;
+  --ink-2: #3d444b;
+  --ink-b: #3a3f44;  /* タイトルと本文中の太字。真っ黒を避けて少しだけグレーに */
+  --muted: #69727a;
+  --band: #f4f5f7;
+  --rule: #d8dce0;
+  --line: #3a3f44;
+  --bar: 4px;
+  --fs-title: 40px;
+  --fs-lead: 29px;
+  --fs-body: 28px;
+  --fs-h: 27px;
+  --fs-c: 25px;
+  --fs-t: 24px;
+  --fs-note: 20px;
+  --pad-x: 72px;
+  --footer-h: 36px;
+  width: 1280px;
+  height: 720px;
+  box-sizing: border-box;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  padding: 0 0 var(--footer-h);
+  background: #fff;
+  color: var(--ink);
+  font-family: "Talk Sans", "Noto Sans JP", "Hiragino Sans", "Hiragino Kaku Gothic ProN", sans-serif;
+  font-weight: 400;
+  font-size: var(--fs-body);
+  line-height: 1.65;
+  letter-spacing: .01em;
+  -webkit-font-smoothing: antialiased;
+  word-break: auto-phrase;
+  line-break: strict;
+}
+section:where(:not(.classic, .stage)) *, section:where(:not(.classic, .stage)) *::before, section:where(:not(.classic, .stage)) *::after { box-sizing: border-box; }
+section:where(:not(.classic, .stage)) strong, section:where(:not(.classic, .stage)) b, section:where(:not(.classic, .stage)) th, section:where(:not(.classic, .stage)) dt, section:where(:not(.classic, .stage)) h3, section:where(:not(.classic, .stage)) h4 { font-weight: 700; }
+section:where(:not(.classic, .stage)) strong { color: inherit; }
+section:where(:not(.classic, .stage)) > h1, section:where(:not(.classic, .stage)) > p strong, section:where(:not(.classic, .stage)) > p b, section:where(:not(.classic, .stage)) li strong, section:where(:not(.classic, .stage)) td strong, section:where(:not(.classic, .stage)) td b { color: var(--ink-b); }
+/* 太字は真っ黒を避ける。部品ごとの色（灰・強調色）はこの後の個別の指定が上書きする */
+section:where(:not(.classic, .stage)) b, section:where(:not(.classic, .stage)) strong, section:where(:not(.classic, .stage)) h3, section:where(:not(.classic, .stage)) h4, section:where(:not(.classic, .stage)) dt, section:where(:not(.classic, .stage)) td:first-child { color: var(--ink-b); }
+section:where(:not(.classic, .stage)) em { font-style: normal; color: var(--accent-d); font-weight: 700; }
+section:where(:not(.classic, .stage)) a { color: inherit; text-decoration: underline; text-decoration-color: var(--rule); text-underline-offset: .18em; }
+section:where(:not(.classic, .stage)) h1, section:where(:not(.classic, .stage)) h3, section:where(:not(.classic, .stage)) h4 { font-feature-settings: "palt" 1; }
+
+/* ===== 骨格 ===== */
+
+/* タイトル：左に短いアクセントの縦線、下に細い罫線 */
+section:where(:not(.classic, .stage)) > h1 {
+  flex: none; position: relative; margin: 0; padding: 30px 150px 16px var(--pad-x);
+  font-size: var(--fs-title); line-height: 1.3; font-weight: 700; letter-spacing: .02em; color: var(--ink-b);
+  border-bottom: 1px solid var(--rule); text-wrap: pretty;
+}
+section:where(:not(.classic, .stage)) > h1::before { content: ""; position: absolute; left: calc(var(--pad-x) - 22px); top: 38px; width: 6px; height: 34px; background: var(--accent); }
+/* ページ番号：右下に小さく。左下にロゴ文字は置かない（ページを静かに保つ） */
+section:where(:not(.classic, .stage))::after { content: attr(data-marpit-pagination); position: absolute; right: 40px; bottom: 18px; color: #9aa1a8; font-size: 16px; font-weight: 400; font-variant-numeric: tabular-nums; }
+section:where(:not(.classic, .stage)) > footer { display: none; }
+
+section:where(:not(.classic, .stage)) > p.lead { flex: none; margin: 22px var(--pad-x) 0; font-size: var(--fs-lead); line-height: 1.6; font-weight: 400; color: var(--ink); text-wrap: pretty; }
+
+section:where(:not(.classic, .stage)) > .blocks { flex: 1; min-height: 0; margin: 30px var(--pad-x) 0; display: flex; flex-direction: column; gap: 24px; }
+section:where(:not(.classic, .stage)) > .blocks > * { margin: 0; min-width: 0; }
+section:where(:not(.classic, .stage)) > .blocks > p { font-size: var(--fs-body); line-height: 1.85; }
+section:where(:not(.classic, .stage)) > .blocks:has(> .band) { margin-bottom: 36px; }
+
+/* ===== 文字 ===== */
+
+section:where(:not(.classic, .stage)) ul { margin: 0; padding: 0; list-style: none; }
+section:where(:not(.classic, .stage)) li { position: relative; padding-left: 1.1em; line-height: 1.6; }
+section:where(:not(.classic, .stage)) li::before { content: ""; position: absolute; left: .1em; top: .64em; width: .34em; height: .34em; border-radius: 50%; background: var(--accent); }
+section:where(:not(.classic, .stage)) li + li { margin-top: .45em; }
+section:where(:not(.classic, .stage)) li > ul { margin-top: .25em; }
+section:where(:not(.classic, .stage)) li li { font-size: .85em; color: var(--ink-2); padding-left: 1.1em; }
+section:where(:not(.classic, .stage)) li li + li { margin-top: .2em; }
+section:where(:not(.classic, .stage)) li li::before { width: .6em; height: 2px; border-radius: 0; background: #aab1b8; top: .82em; left: .05em; }
+
+/* 部品の見出し：上に4pxの帯。主役だけアクセント */
+section:where(:not(.classic, .stage)) h3 { margin: 0 0 14px; padding-top: 12px; border-top: var(--bar) solid var(--line); font-size: var(--fs-h); line-height: 1.35; }
+section:where(:not(.classic, .stage)) h3.on, section:where(:not(.classic, .stage)) .on > h3 { border-top-color: var(--accent); color: var(--ink-b); }
+
+section:where(:not(.classic, .stage)) .note { font-size: var(--fs-note); line-height: 1.65; color: var(--muted); }
+section:where(:not(.classic, .stage)) .note p { margin: 0; }
+section:where(:not(.classic, .stage)) .note li::before { background: #aab1b8; }
+section:where(:not(.classic, .stage)) .note li + li { margin-top: .1em; }
+
+/* ===== 配置 ===== */
+
+/* 灰色の地：読み物として区切りたいページだけ。中身は縦の中央 */
+section:where(:not(.classic, .stage)) .band { flex: 1; margin: 0 calc(-1 * var(--pad-x)); padding: 36px var(--pad-x); background: var(--band); display: flex; flex-direction: column; justify-content: center; gap: 20px; }
+section:where(:not(.classic, .stage)) .band > * { margin: 0; }
+
+/* 段組み */
+section:where(:not(.classic, .stage)) .cols { display: grid; grid-template-columns: repeat(var(--n, 2), minmax(0, 1fr)); gap: 0 48px; align-items: start; }
+section:where(:not(.classic, .stage)) .cols ul { font-size: var(--fs-c); }
+section:where(:not(.classic, .stage)) .cols.gap-s { gap: 0 28px; }
+
+/* ===== 表：横線だけ。見出し行の下に墨の2px ===== */
+section:where(:not(.classic, .stage)) table { width: 100%; border-collapse: collapse; font-size: var(--fs-t); line-height: 1.5; }
+section:where(:not(.classic, .stage)) th, section:where(:not(.classic, .stage)) td { padding: 13px 16px; border: 0; border-bottom: 1px solid var(--rule); text-align: left; vertical-align: middle; background: none; }
+section:where(:not(.classic, .stage)) th { border-bottom: 2px solid var(--line); font-size: calc(var(--fs-t) - 2px); color: var(--muted); letter-spacing: .04em; }
+section:where(:not(.classic, .stage)) td:first-child { font-weight: 700; }
+section:where(:not(.classic, .stage)) td small { display: block; font-size: .8em; color: var(--muted); line-height: 1.45; margin-top: 2px; font-weight: 400; }
+/* ===== 流れ：手順の箱と矢印（英語の番号は付けない。順番は矢印で見せる） ===== */
+section:where(:not(.classic, .stage)) .steps { display: grid; grid-template-columns: repeat(var(--n, 4), minmax(0, 1fr)); gap: 40px; }
+section:where(:not(.classic, .stage)) .steps > div { position: relative; padding: 16px 20px 20px; border-top: var(--bar) solid var(--line); background: var(--band); }
+section:where(:not(.classic, .stage)) .steps > div + div::before { content: ""; position: absolute; left: -28px; top: 44%; width: 14px; height: 14px; border-top: 2.5px solid #9aa1a8; border-right: 2.5px solid #9aa1a8; transform: rotate(45deg); }
+section:where(:not(.classic, .stage)) .steps > div > b { display: block; font-size: var(--fs-h); line-height: 1.35; }
+section:where(:not(.classic, .stage)) .steps > div > p { margin: 10px 0 0; font-size: 22px; line-height: 1.6; color: var(--ink-2); }
+section:where(:not(.classic, .stage)) .steps > div.on { border-top-color: var(--accent); background: var(--accent-l); }
+section:where(:not(.classic, .stage)) .steps > div.on > b { color: var(--ink-b); }
+section:where(:not(.classic, .stage)) .loop-back { position: relative; margin-top: -8px; padding: 10px 0 0 30px; font-size: var(--fs-note); font-weight: 700; color: var(--ink-b); }
+section:where(:not(.classic, .stage)) .loop-back::before { content: ""; position: absolute; left: 8px; top: 0; width: 14px; height: 22px; border-left: 2px solid var(--accent); border-bottom: 2px solid var(--accent); }
+
+/* ===== 図 ===== */
+section:where(:not(.classic, .stage)) .image-block { margin: 0; display: grid; justify-items: center; }
+section:where(:not(.classic, .stage)) .image-block img { display: block; max-width: 100%; max-height: 470px; object-fit: contain; }
+section:where(:not(.classic, .stage)) .image-block img[style*="height"] { max-height: none; }
+
+/* ===== ページの種類 ===== */
+
+/* 章扉：左に大きなタイトル。灰色の地と、下に細いアクセントの線 */
+section:where(:not(.classic, .stage)).divider { background: var(--band); justify-content: center; padding: 0 0 40px; }
+section:where(:not(.classic, .stage)).divider > h1 { border: 0; padding: 0 96px; font-size: 46px; letter-spacing: .04em; }
+section:where(:not(.classic, .stage)).divider > h1::before { left: 96px; top: auto; bottom: -26px; width: 64px; height: 5px; }
+section:where(:not(.classic, .stage)).divider > .blocks { display: none; }
+section:where(:not(.classic, .stage)).divider::after { display: none; }
+
+/* 裏表紙：中央にひと言。上に短いアクセントの線 */
+section:where(:not(.classic, .stage)).closing { background: #fff; justify-content: center; align-items: center; padding: 0 0 20px; text-align: center; }
+section:where(:not(.classic, .stage)).closing::after { display: none; }
+section:where(:not(.classic, .stage)).closing > h1 { padding: 0; border: 0; font-size: 46px; letter-spacing: .06em; }
+section:where(:not(.classic, .stage)).closing > h1::before { left: 50%; top: -40px; width: 64px; height: 5px; margin-left: -32px; }
+section:where(:not(.classic, .stage)).closing > p.lead { margin: 30px 0 0; font-size: 24px; color: var(--muted); }
+section:where(:not(.classic, .stage)).closing > .blocks { flex: none; margin: 26px 0 0; align-items: center; }
+section:where(:not(.classic, .stage)).closing > .blocks p { font-size: 22px; color: var(--muted); }
+
+/* 線画アイコン（jinno-diagrams の形。色は currentColor） */
+section:where(:not(.classic, .stage)) i[class^="ic-"] { display: inline-block; width: 44px; height: 44px; background: currentColor; -webkit-mask-size: contain; mask-size: contain; -webkit-mask-repeat: no-repeat; mask-repeat: no-repeat; -webkit-mask-position: center; mask-position: center; font-style: normal; }
+section:where(:not(.classic, .stage)) i.ic-doc { -webkit-mask-image: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%22-2%20-2%2082%2082%22%20fill%3D%22none%22%20stroke%3D%22black%22%20stroke-width%3D%223.4%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cpath%20d%3D%22M9%200H51L69%2018V78H9Z%20M51%200V18H69%22/%3E%3Cpath%20d%3D%22M21%2032H57M21%2046H57M21%2060H49%22/%3E%3C/svg%3E"); mask-image: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%22-2%20-2%2082%2082%22%20fill%3D%22none%22%20stroke%3D%22black%22%20stroke-width%3D%223.4%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cpath%20d%3D%22M9%200H51L69%2018V78H9Z%20M51%200V18H69%22/%3E%3Cpath%20d%3D%22M21%2032H57M21%2046H57M21%2060H49%22/%3E%3C/svg%3E"); }
+section:where(:not(.classic, .stage)) i.ic-search { -webkit-mask-image: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%22-2%20-2%2082%2082%22%20fill%3D%22none%22%20stroke%3D%22black%22%20stroke-width%3D%223.4%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Ccircle%20cx%3D%2231%22%20cy%3D%2230%22%20r%3D%2223%22/%3E%3Cpath%20d%3D%22M48%2047L72%2071M48%2055L64%2071M20%2030H42M31%2019V41%22/%3E%3C/svg%3E"); mask-image: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%22-2%20-2%2082%2082%22%20fill%3D%22none%22%20stroke%3D%22black%22%20stroke-width%3D%223.4%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Ccircle%20cx%3D%2231%22%20cy%3D%2230%22%20r%3D%2223%22/%3E%3Cpath%20d%3D%22M48%2047L72%2071M48%2055L64%2071M20%2030H42M31%2019V41%22/%3E%3C/svg%3E"); }
+section:where(:not(.classic, .stage)) i.ic-list { -webkit-mask-image: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%22-2%20-2%2082%2082%22%20fill%3D%22none%22%20stroke%3D%22black%22%20stroke-width%3D%223.4%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cpath%20d%3D%22M14%207H54L65%2018V71H14Z%20M54%207V18H65%22/%3E%3Cpath%20d%3D%22M24%2029H28M35%2029H55M24%2041H28M35%2041H55M24%2053H28M35%2053H49M24%2062H28M35%2062H55%22/%3E%3C/svg%3E"); mask-image: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%22-2%20-2%2082%2082%22%20fill%3D%22none%22%20stroke%3D%22black%22%20stroke-width%3D%223.4%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cpath%20d%3D%22M14%207H54L65%2018V71H14Z%20M54%207V18H65%22/%3E%3Cpath%20d%3D%22M24%2029H28M35%2029H55M24%2041H28M35%2041H55M24%2053H28M35%2053H49M24%2062H28M35%2062H55%22/%3E%3C/svg%3E"); }
+section:where(:not(.classic, .stage)) i.ic-set { -webkit-mask-image: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%22-2%20-2%2082%2082%22%20fill%3D%22none%22%20stroke%3D%22black%22%20stroke-width%3D%223.4%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Crect%20x%3D%227%22%20y%3D%229%22%20width%3D%2264%22%20height%3D%2260%22%20rx%3D%225%22/%3E%3Cpath%20d%3D%22M17%2025H61M17%2039H61M17%2053H61%22/%3E%3Ccircle%20cx%3D%2229%22%20cy%3D%2225%22%20r%3D%225%22/%3E%3Ccircle%20cx%3D%2249%22%20cy%3D%2239%22%20r%3D%225%22/%3E%3Ccircle%20cx%3D%2234%22%20cy%3D%2253%22%20r%3D%225%22/%3E%3C/svg%3E"); mask-image: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%22-2%20-2%2082%2082%22%20fill%3D%22none%22%20stroke%3D%22black%22%20stroke-width%3D%223.4%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Crect%20x%3D%227%22%20y%3D%229%22%20width%3D%2264%22%20height%3D%2260%22%20rx%3D%225%22/%3E%3Cpath%20d%3D%22M17%2025H61M17%2039H61M17%2053H61%22/%3E%3Ccircle%20cx%3D%2229%22%20cy%3D%2225%22%20r%3D%225%22/%3E%3Ccircle%20cx%3D%2249%22%20cy%3D%2239%22%20r%3D%225%22/%3E%3Ccircle%20cx%3D%2234%22%20cy%3D%2253%22%20r%3D%225%22/%3E%3C/svg%3E"); }
+section:where(:not(.classic, .stage)) i.ic-user { -webkit-mask-image: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%22-2%20-2%2082%2082%22%20fill%3D%22none%22%20stroke%3D%22black%22%20stroke-width%3D%223.4%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Ccircle%20cx%3D%2239%22%20cy%3D%2218%22%20r%3D%2216%22/%3E%3Cpath%20d%3D%22M9%2077%20Q8%2042%2039%2040%20Q70%2042%2069%2077Z%22/%3E%3C/svg%3E"); mask-image: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%22-2%20-2%2082%2082%22%20fill%3D%22none%22%20stroke%3D%22black%22%20stroke-width%3D%223.4%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Ccircle%20cx%3D%2239%22%20cy%3D%2218%22%20r%3D%2216%22/%3E%3Cpath%20d%3D%22M9%2077%20Q8%2042%2039%2040%20Q70%2042%2069%2077Z%22/%3E%3C/svg%3E"); }
+section:where(:not(.classic, .stage)) i.ic-agent { -webkit-mask-image: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%22-2%20-2%2082%2082%22%20fill%3D%22none%22%20stroke%3D%22black%22%20stroke-width%3D%223.4%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Crect%20x%3D%227%22%20y%3D%2218%22%20width%3D%2264%22%20height%3D%2251%22%20rx%3D%2212%22/%3E%3Cpath%20d%3D%22M39%2018V3M29%203H49M0%2033V54M78%2033V54M25%2069V78M53%2069V78%22/%3E%3Ccircle%20cx%3D%2226%22%20cy%3D%2239%22%20r%3D%223%22/%3E%3Ccircle%20cx%3D%2252%22%20cy%3D%2239%22%20r%3D%223%22/%3E%3Cpath%20d%3D%22M27%2054H51%22/%3E%3C/svg%3E"); mask-image: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%22-2%20-2%2082%2082%22%20fill%3D%22none%22%20stroke%3D%22black%22%20stroke-width%3D%223.4%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Crect%20x%3D%227%22%20y%3D%2218%22%20width%3D%2264%22%20height%3D%2251%22%20rx%3D%2212%22/%3E%3Cpath%20d%3D%22M39%2018V3M29%203H49M0%2033V54M78%2033V54M25%2069V78M53%2069V78%22/%3E%3Ccircle%20cx%3D%2226%22%20cy%3D%2239%22%20r%3D%223%22/%3E%3Ccircle%20cx%3D%2252%22%20cy%3D%2239%22%20r%3D%223%22/%3E%3Cpath%20d%3D%22M27%2054H51%22/%3E%3C/svg%3E"); }
+section:where(:not(.classic, .stage)) i.ic-tool { -webkit-mask-image: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%22-2%20-2%2082%2082%22%20fill%3D%22none%22%20stroke%3D%22black%22%20stroke-width%3D%223.4%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cpath%20d%3D%22M46%208Q63%202%2071%2016L57%2030L48%2021L34%2035Q30%2042%2035%2047L16%2069Q8%2077%203%2069Q0%2064%207%2059L29%2039Q22%2027%2030%2016Q35%2010%2046%208Z%22/%3E%3C/svg%3E"); mask-image: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%22-2%20-2%2082%2082%22%20fill%3D%22none%22%20stroke%3D%22black%22%20stroke-width%3D%223.4%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cpath%20d%3D%22M46%208Q63%202%2071%2016L57%2030L48%2021L34%2035Q30%2042%2035%2047L16%2069Q8%2077%203%2069Q0%2064%207%2059L29%2039Q22%2027%2030%2016Q35%2010%2046%208Z%22/%3E%3C/svg%3E"); }
+section:where(:not(.classic, .stage)) i.ic-check { -webkit-mask-image: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%22-2%20-2%2082%2082%22%20fill%3D%22none%22%20stroke%3D%22black%22%20stroke-width%3D%223.4%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cpath%20d%3D%22M13%208H53L65%2020V70H13Z%20M53%208V20H65%22/%3E%3Cpath%20d%3D%22M23%2029H49M23%2039H40%22/%3E%3Ccircle%20cx%3D%2253%22%20cy%3D%2256%22%20r%3D%2217%22/%3E%3Cpath%20d%3D%22M43%2056L50%2063L63%2048%22/%3E%3C/svg%3E"); mask-image: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%22-2%20-2%2082%2082%22%20fill%3D%22none%22%20stroke%3D%22black%22%20stroke-width%3D%223.4%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cpath%20d%3D%22M13%208H53L65%2020V70H13Z%20M53%208V20H65%22/%3E%3Cpath%20d%3D%22M23%2029H49M23%2039H40%22/%3E%3Ccircle%20cx%3D%2253%22%20cy%3D%2256%22%20r%3D%2217%22/%3E%3Cpath%20d%3D%22M43%2056L50%2063L63%2048%22/%3E%3C/svg%3E"); }
+
+/* ===================== 登壇の部品 ===================== */
+
+
+section:where(:not(.classic, .stage)) {
+  --paper: #ffffff;
+  --emphasis-color: var(--accent-d);
+  --font-scale: 1.1;
+  --lead-scale: 1.2;
+  --component-scale: 1;
+}
+section:where(:not(.classic, .stage)) strong { color: var(--emphasis-color); }
+section:where(:not(.classic, .stage)) > h1 strong { color: var(--accent-d); }
+
+/* ===== リード：既定は29px。lead-* で倍率を変える ===== */
+section:where(:not(.classic, .stage)) > p.lead { font-size: calc(var(--fs-lead) * var(--lead-scale) / 1.2); line-height: 1.62; }
+section:where(:not(.classic, .stage)).lead-s { --lead-scale: 1.12; }
+section:where(:not(.classic, .stage)).lead-m { --lead-scale: 1.16; }
+section:where(:not(.classic, .stage)).lead-l { --lead-scale: 1.3; }
+section:where(:not(.classic, .stage)).lead-1 { --lead-scale: 1.04; }
+section:where(:not(.classic, .stage)).lead-11 { --lead-scale: 1.1; }
+
+/* 図だけのページでは本文の上の余白を詰める */
+section:where(:not(.classic, .stage)) > .blocks.is-visual { margin-top: 22px; }
+section:where(:not(.classic, .stage)) > .blocks:not(:has(*)) { display: none; }
+section:where(:not(.classic, .stage)) .image-block { gap: 8px; }
+
+/* ===== フッター：パンくず（中央）とページ番号 ===== */
+section:where(:not(.classic, .stage)) > footer {
+  display: flex; position: absolute; left: 160px; right: 160px; bottom: 10px; height: 26px;
+  align-items: center; justify-content: center; gap: 2px 8px; flex-wrap: nowrap;
+  color: #a3aab1; font-size: 14.5px; line-height: 1; letter-spacing: .02em;
+}
+section:where(:not(.classic, .stage)) > footer .bc-current { color: var(--ink-b); font-weight: 700; padding-bottom: 3px; border-bottom: 2px solid var(--accent); }
+section:where(:not(.classic, .stage)) > footer .bc-sep { color: #c6ccd1; }
+section:where(:not(.classic, .stage)).cover > footer, section:where(:not(.classic, .stage)).closing > footer, section:where(:not(.classic, .stage)).full > footer { display: none; }
+section:where(:not(.classic, .stage)) > .blocks { margin-bottom: 18px; }
+
+/* ===== 中央寄せ・主張・全面 ===== */
+section:where(:not(.classic, .stage)).centered > .blocks { flex: 1; justify-content: safe center; padding-bottom: 40px; }
+section:where(:not(.classic, .stage)).statement > p.lead { max-width: 1060px; margin: 80px var(--pad-x) 0; font-size: calc(36px * var(--lead-scale) / 1.2); line-height: 1.5; font-weight: 700; color: var(--ink-b); }
+section:where(:not(.classic, .stage)).statement > p.lead::before { content: ""; display: block; width: 56px; height: 5px; margin-bottom: 26px; background: var(--accent); }
+section:where(:not(.classic, .stage)).full { padding-bottom: 0; }
+section:where(:not(.classic, .stage)).full::after { display: none; }
+section:where(:not(.classic, .stage)).full > .blocks { flex: 1; margin: 18px 40px 14px; }
+section:where(:not(.classic, .stage)).full .image-block { height: 100%; min-height: 0; }
+section:where(:not(.classic, .stage)).full .image-block img { width: 100%; height: 100%; max-height: none; transform: scale(var(--full-scale, 1)); }
+
+/* ===== 地の文・補足の囲み・引用 ===== */
+section:where(:not(.classic, .stage)) > .blocks > p:not(.image-block) { font-size: calc(24px * var(--component-scale)); line-height: 1.7; }
+section:where(:not(.classic, .stage)) blockquote { margin: 0; padding: 16px 24px; border: 0; border-left: 5px solid var(--accent); background: var(--band); }
+section:where(:not(.classic, .stage)) blockquote > small { display: block; font-size: 16px; font-weight: 700; letter-spacing: .08em; color: var(--accent-d); }
+section:where(:not(.classic, .stage)) blockquote p { margin: 4px 0 0; font-size: calc(22px * var(--component-scale)); line-height: 1.55; color: var(--ink); }
+section:where(:not(.classic, .stage)) .quote-block { margin: 0; padding: 8px 0 6px 30px; border-left: 5px solid var(--accent); }
+section:where(:not(.classic, .stage)) .quote-block p { margin: 0; font-size: calc(30px * var(--component-scale)); line-height: 1.55; color: var(--ink-b); }
+section:where(:not(.classic, .stage)) .quote-block p.quote-cite { margin-top: 16px; font-size: 20px; color: var(--muted); }
+
+/* ===== 帯：結論をひと言（灰の地＋左にアクセントの縦線） ===== */
+section:where(:not(.classic, .stage)) .blocks > .band { flex: none; margin: 0; padding: 34px 44px; border-left: 6px solid var(--accent); font-size: calc(33px * var(--component-scale)); line-height: 1.6; font-weight: 700; color: var(--ink-b); }
+section:where(:not(.classic, .stage)) .blocks > .band p { margin: 0; }
+
+/* ===== 掛け合い（縦積み）。私は左、Agent君は右 ===== */
+section:where(:not(.classic, .stage)) .dialogue { display: grid; gap: 26px; }
+section:where(:not(.classic, .stage)) .dialogue-row { display: grid; gap: 10px; justify-items: start; }
+section:where(:not(.classic, .stage)) .dialogue-row.is-right { justify-items: end; }
+section:where(:not(.classic, .stage)) .dialogue-bubble {
+  position: relative; margin: 0; max-width: 90%; padding: 22px 30px; border-radius: 4px;
+  background: var(--band); color: var(--ink);
+  font-size: calc(26px * var(--font-scale) * var(--component-scale)); line-height: 1.55; font-weight: 400;
+}
+section:where(:not(.classic, .stage)) .dialogue-bubble strong { color: var(--accent-d); }
+section:where(:not(.classic, .stage)) .dialogue-bubble::before { content: ""; position: absolute; bottom: -7px; left: 40px; width: 14px; height: 14px; transform: rotate(45deg); background: inherit; }
+section:where(:not(.classic, .stage)) .dialogue-row.is-right .dialogue-bubble { background: var(--accent-l); }
+section:where(:not(.classic, .stage)) .dialogue-row.is-right .dialogue-bubble::before { left: auto; right: 40px; }
+section:where(:not(.classic, .stage)) .dialogue-who { display: grid; justify-items: center; gap: 4px; padding: 0 18px; }
+section:where(:not(.classic, .stage)) .dialogue .person-icon { display: grid; place-items: center; width: calc(84px * var(--component-scale)); height: calc(84px * var(--component-scale)); color: var(--ink-b); }
+section:where(:not(.classic, .stage)) .dialogue-row.is-right .person-icon { color: #2e8b6f; }
+section:where(:not(.classic, .stage)) .dialogue .person-icon svg { width: 100%; height: 100%; stroke-width: 1.3; }
+section:where(:not(.classic, .stage)) .dialogue .person-icon.has-photo img { display: block; width: 100%; height: 100%; object-fit: contain; border-radius: 16%; }
+section:where(:not(.classic, .stage)) .dialogue-speaker { font-size: calc(17px * var(--font-scale) * var(--component-scale)); font-weight: 700; color: var(--ink-b); }
+
+/* ===== 語りかけ ===== */
+section:where(:not(.classic, .stage)) .speech-block { width: 100%; min-width: 0; }
+section:where(:not(.classic, .stage)) .speech-message {
+  position: relative; display: flex; align-items: center; width: 100%; min-height: 170px; padding: 34px 44px;
+  background: var(--band); color: var(--ink-b); border-radius: 6px;
+  font-size: calc(34px * var(--component-scale)); font-weight: 700; line-height: 1.6;
+}
+section:where(:not(.classic, .stage)) .speech-message p { margin: 0; width: 100%; font: inherit; color: inherit; line-height: inherit; }
+section:where(:not(.classic, .stage)) .speech-message strong { color: var(--accent-d); }
+section:where(:not(.classic, .stage)) .speech-bubble .speech-message::after { content: ""; position: absolute; left: 64px; bottom: -20px; border-right: 24px solid transparent; border-top: 22px solid var(--band); }
+section:where(:not(.classic, .stage)) .speech-speaker { display: flex; align-items: center; gap: 14px; margin: 26px 0 0 26px; color: var(--ink-b); }
+section:where(:not(.classic, .stage)) .speech-speaker svg { width: 92px; height: 92px; flex: none; }
+section:where(:not(.classic, .stage)) .speech-speaker .speech-speaker-photo { display: block; width: 92px; height: 92px; flex: none; object-fit: contain; border-radius: 16%; }
+section:where(:not(.classic, .stage)) .speech-speaker span { font-size: 26px; font-weight: 700; }
+
+/* ===== 対象と目的 ===== */
+section:where(:not(.classic, .stage)) .purpose { display: grid; justify-items: stretch; }
+section:where(:not(.classic, .stage)) .purpose-row { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 34px; align-items: center; padding: 22px 26px; background: var(--band); }
+section:where(:not(.classic, .stage)) .purpose-row.is-emphasis { background: var(--accent-l); }
+section:where(:not(.classic, .stage)) .purpose-label {
+  display: grid; place-items: center; min-width: calc(150px * var(--component-scale)); min-height: calc(92px * var(--component-scale));
+  background: #fff; border-top: 5px solid #7c858d; color: var(--ink-b);
+  font-size: calc(24px * var(--component-scale)); font-weight: 700; letter-spacing: .12em;
+}
+section:where(:not(.classic, .stage)) .purpose-label strong { color: inherit; }
+section:where(:not(.classic, .stage)) .purpose-row.is-emphasis .purpose-label { border-top-color: var(--accent); color: var(--accent-d); }
+section:where(:not(.classic, .stage)) .purpose ul { margin: 0; padding: 0; list-style: none; display: grid; gap: 10px; }
+section:where(:not(.classic, .stage)) .purpose li { font-size: calc(25px * var(--component-scale)); line-height: 1.5; }
+section:where(:not(.classic, .stage)) .purpose li + li { margin-top: 0; }
+section:where(:not(.classic, .stage)) .purpose-row.is-emphasis li { font-weight: 700; color: var(--ink-b); }
+section:where(:not(.classic, .stage)) .purpose-arrow { position: relative; justify-self: center; display: block; width: 26px; height: 18px; margin: 10px 0 26px; background: #b9c0c6; }
+section:where(:not(.classic, .stage)) .purpose-arrow::after { content: ""; position: absolute; top: 100%; left: 50%; transform: translateX(-50%); border: 24px solid transparent; border-top: 20px solid #b9c0c6; border-bottom: 0; }
+
+/* ===== アジェンダ：番号はアクセント、説明は灰 ===== */
+section:where(:not(.classic, .stage)) .agenda ol { margin: 0; padding: 0; list-style: none; display: grid; gap: 14px; counter-reset: agenda; }
+section:where(:not(.classic, .stage)) .agenda li { counter-increment: agenda; display: grid; grid-template-columns: 58px 1fr; gap: 18px; align-items: baseline; padding: 0 0 12px; border-bottom: 1px solid var(--rule); }
+section:where(:not(.classic, .stage)) .agenda li::before { content: counter(agenda); position: static; width: auto; height: auto; background: none; border-radius: 0; color: var(--accent); font-size: calc(36px * var(--component-scale)); font-weight: 700; line-height: 1; font-variant-numeric: tabular-nums; }
+section:where(:not(.classic, .stage)) .agenda li + li { margin-top: 0; }
+section:where(:not(.classic, .stage)) .agenda-copy strong { display: block; color: var(--ink-b); font-size: calc(27px * var(--component-scale)); line-height: 1.35; font-weight: 700; }
+section:where(:not(.classic, .stage)) .agenda-copy p { margin: 2px 0 0; color: var(--muted); font-size: calc(19px * var(--component-scale)); line-height: 1.5; }
+
+/* ===== 比較（列） ===== */
+section:where(:not(.classic, .stage)) .compare { display: grid; grid-template-columns: repeat(2, 1fr); gap: 28px; }
+section:where(:not(.classic, .stage)) .compare.cols-3 { grid-template-columns: repeat(3, 1fr); }
+section:where(:not(.classic, .stage)) .compare article { min-width: 0; background: var(--band); border-top: var(--bar) solid var(--line); }
+section:where(:not(.classic, .stage)) .compare h3 { margin: 0; padding: 16px 22px 6px; border: 0; font-size: calc(25px * var(--component-scale)); color: var(--ink-b); }
+section:where(:not(.classic, .stage)) .compare ul { margin: 0; padding: 8px 22px 20px; display: grid; gap: 8px; list-style: none; }
+section:where(:not(.classic, .stage)) .compare li { font-size: calc(22px * var(--component-scale)); line-height: 1.5; }
+section:where(:not(.classic, .stage)) .compare li + li { margin-top: 0; }
+section:where(:not(.classic, .stage)) .compare small { display: block; padding: 0 22px 18px; color: var(--muted); font-size: 18px; line-height: 1.5; }
+
+/* ===== 流れ ===== */
+section:where(:not(.classic, .stage)) .flow { display: flex; align-items: stretch; }
+section:where(:not(.classic, .stage)) .flow.is-horizontal { flex-direction: row; }
+section:where(:not(.classic, .stage)) .flow.is-vertical { flex-direction: column; }
+section:where(:not(.classic, .stage)) .flow-seq { display: flex; align-items: stretch; min-width: 0; }
+section:where(:not(.classic, .stage)) .flow.is-horizontal .flow-seq { flex: 1; }
+section:where(:not(.classic, .stage)) .flow.is-vertical .flow-seq { flex-direction: column; }
+section:where(:not(.classic, .stage)) .flow article { flex: 1; min-width: 0; padding: 16px 20px 18px; background: var(--band); border-top: var(--bar) solid var(--line); }
+section:where(:not(.classic, .stage)) .flow article.is-emphasis { border-top-color: var(--accent); background: var(--accent-l); }
+section:where(:not(.classic, .stage)) .flow article strong { display: block; color: var(--ink-b); font-size: calc(24px * var(--component-scale)); line-height: 1.35; }
+section:where(:not(.classic, .stage)) .flow article p { margin: 8px 0 0; color: var(--ink-2); font-size: calc(19px * var(--component-scale)); line-height: 1.5; }
+section:where(:not(.classic, .stage)) .flow-arrow { position: relative; flex: none; align-self: center; background: #9aa1a8; }
+section:where(:not(.classic, .stage)) .flow.is-horizontal .flow-arrow { width: 26px; height: 2.5px; margin: 0 6px; }
+section:where(:not(.classic, .stage)) .flow.is-horizontal .flow-arrow::after { content: ""; position: absolute; right: -1px; top: 50%; transform: translateY(-50%); border: 7px solid transparent; border-left: 10px solid #9aa1a8; border-right: 0; }
+section:where(:not(.classic, .stage)) .flow.is-vertical .flow-arrow { width: 2.5px; height: 20px; margin: 4px 0; }
+section:where(:not(.classic, .stage)) .flow.is-vertical .flow-arrow::after { content: ""; position: absolute; bottom: -1px; left: 50%; transform: translateX(-50%); border: 7px solid transparent; border-top: 10px solid #9aa1a8; border-bottom: 0; }
+
+/* ===== 語り ===== */
+section:where(:not(.classic, .stage)) .prose { display: grid; gap: 22px; }
+section:where(:not(.classic, .stage)) .prose p { margin: 0; font-size: calc(27px * var(--component-scale)); line-height: 1.8; }
+
+/* ===== リンク ===== */
+section:where(:not(.classic, .stage)) .links { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+section:where(:not(.classic, .stage)) .links.cols-1 { grid-template-columns: minmax(0, 720px); }
+section:where(:not(.classic, .stage)) .links article { min-width: 0; display: grid; grid-template-columns: 46px 1fr; gap: 16px; align-items: start; padding: 18px 20px; background: var(--band); border-top: var(--bar) solid var(--line); }
+section:where(:not(.classic, .stage)) .link-icon { display: grid; place-items: center; width: 44px; height: 44px; background: #fff; color: var(--accent); }
+section:where(:not(.classic, .stage)) .link-icon svg { width: 22px; height: 22px; }
+section:where(:not(.classic, .stage)) .link-copy strong { display: block; color: var(--ink-b); font-size: 22px; line-height: 1.35; }
+section:where(:not(.classic, .stage)) .link-url { display: block; margin-top: 4px; color: var(--accent-d); font-size: 17px; font-weight: 700; word-break: break-all; }
+section:where(:not(.classic, .stage)) .link-copy p { margin: 6px 0 0; color: var(--muted); font-size: 17px; line-height: 1.5; }
+
+/* ===== コード（窓） ===== */
+section:where(:not(.classic, .stage)) .code-block { margin: 0; display: grid; gap: 14px; justify-items: center; }
+section:where(:not(.classic, .stage)) .code-window { width: 100%; max-width: 1040px; border-radius: 6px; overflow: hidden; background: #22282e; box-shadow: 0 12px 30px rgba(20, 28, 34, .16); }
+section:where(:not(.classic, .stage)) .code-chrome { display: flex; align-items: center; gap: 7px; padding: 11px 16px; background: rgba(255, 255, 255, .06); }
+section:where(:not(.classic, .stage)) .code-chrome i { flex: none; width: 11px; height: 11px; border-radius: 50%; background: rgba(255, 255, 255, .24); }
+section:where(:not(.classic, .stage)) .code-chrome span { flex: 1; margin-right: 43px; text-align: center; color: rgba(255, 255, 255, .6); font-size: 16px; font-weight: 700; }
+section:where(:not(.classic, .stage)) .code-window pre, section:where(:not(.classic, .stage)) .code-window marp-pre {
+  display: block; margin: 0; padding: 20px 28px 24px; background: none; color: #e6eaee;
+  font-family: "SF Mono", ui-monospace, Menlo, Consolas, "Talk Sans", "Noto Sans JP", monospace;
+  font-size: calc(20px * var(--component-scale)); line-height: 1.62; white-space: pre-wrap; overflow-wrap: anywhere;
+}
+section:where(:not(.classic, .stage)) .code-window pre code { font: inherit; background: none; color: inherit; padding: 0; white-space: inherit; }
+section:where(:not(.classic, .stage)) .code-window .hljs-keyword, section:where(:not(.classic, .stage)) .code-window .hljs-literal { color: #f29bb5; }
+section:where(:not(.classic, .stage)) .code-window .hljs-string { color: #eacb7a; }
+section:where(:not(.classic, .stage)) .code-window .hljs-comment { color: #8b96a0; }
+section:where(:not(.classic, .stage)) .code-window .hljs-number { color: #8cc8f0; }
+section:where(:not(.classic, .stage)) .code-window .hljs-attr, section:where(:not(.classic, .stage)) .code-window .hljs-variable { color: #8fd3e0; }
+section:where(:not(.classic, .stage)) .code-window .hljs-type, section:where(:not(.classic, .stage)) .code-window .hljs-title, section:where(:not(.classic, .stage)) .code-window .hljs-built_in { color: #b5dc95; }
+section:where(:not(.classic, .stage)) .code-caption { margin: 0; text-align: center; font-size: 22px; font-weight: 700; color: var(--ink-b); }
+
+/* ===== 章扉：灰の地。上に章の一覧、左に大きなタイトル、下にリード ===== */
+section:where(:not(.classic, .stage)).divider {
+  justify-content: center; padding: 0 0 30px;
+  background-color: var(--band);
+  background-image:
+    radial-gradient(circle at 1130px 360px, transparent 0 248px, #d5e3e8 248px 250px, transparent 251px),
+    radial-gradient(circle at 1130px 360px, transparent 0 168px, #dfeaee 168px 170px, transparent 171px),
+    radial-gradient(circle, #d3e1e6 1.4px, transparent 1.6px);
+  background-size: 100% 100%, 100% 100%, 28px 28px;
+  background-position: 0 0, 0 0, 14px 14px;
+}
+section:where(:not(.classic, .stage)).divider::before { content: ""; position: absolute; inset: 0 auto 0 0; width: 900px; background: linear-gradient(90deg, var(--band) 72%, transparent); z-index: 0; }
+section:where(:not(.classic, .stage)).divider > * { position: relative; z-index: 1; }
+section:where(:not(.classic, .stage)).divider > footer { display: flex; position: absolute; left: 96px; right: auto; top: 96px; bottom: auto; height: auto; justify-content: flex-start; gap: 10px 12px; font-size: 18px; color: #9aa3ab; }
+section:where(:not(.classic, .stage)).divider > footer .bc-current { color: var(--accent-d); border-bottom-width: 3px; }
+section:where(:not(.classic, .stage)).divider > h1 { padding: 0 96px; font-size: 54px; line-height: 1.3; letter-spacing: .03em; }
+section:where(:not(.classic, .stage)).divider > h1::before { left: 96px; top: auto; bottom: -30px; width: 72px; height: 6px; }
+section:where(:not(.classic, .stage)).divider > p.lead { margin: 64px 96px 0; max-width: 860px; font-size: 27px; line-height: 1.7; color: var(--ink-2); }
+
+/* 本の紹介：図だけを大きく */
+section:where(:not(.classic, .stage)).book > .blocks { margin-top: 18px; }
+
+/* ::: scale で表の文字も一緒に縮める（表は固定の大きさのため） */
+section:where(:not(.classic, .stage)) .scaled table { font-size: calc(var(--fs-t) * var(--component-scale)); }
+section:where(:not(.classic, .stage)) .scaled th { font-size: calc((var(--fs-t) - 2px) * var(--component-scale)); }
+section:where(:not(.classic, .stage)) .scaled th, section:where(:not(.classic, .stage)) .scaled td { padding: calc(12px * var(--component-scale)) 16px; }
+
+/* ===================== 場面図・自己紹介・見出しつき箇条書き ===================== */
+
+/* 見出しつき箇条書き（::: bullets）。rule で上に細い線 */
+section:where(:not(.classic, .stage)) .bullet-block { display: grid; gap: 14px; }
+section:where(:not(.classic, .stage)) .bullet-block.top-rule-on { padding-top: 17px; border-top: 1px solid var(--rule); }
+section:where(:not(.classic, .stage)) .bullet-block > h3 { margin: 0; padding: 0; border: 0; color: var(--muted); font-size: 20px; letter-spacing: .05em; line-height: 1.3; }
+section:where(:not(.classic, .stage)) .bullet-block > ul { display: grid; gap: 12px; font-size: calc(26px * var(--component-scale)); }
+section:where(:not(.classic, .stage)) .bullet-block > ul > li + li { margin-top: 0; }
+
+/* 自己紹介（::: profile）：左に写真、右に見出しつきの行 */
+section:where(:not(.classic, .stage)) .profile { display: grid; grid-template-columns: 300px 1fr; gap: 34px; align-items: start; }
+section:where(:not(.classic, .stage)) .profile.no-photo { grid-template-columns: 1fr; }
+section:where(:not(.classic, .stage)) .profile-photo { margin: 0; display: grid; gap: 10px; justify-items: center; }
+section:where(:not(.classic, .stage)) .profile-photo img { width: 100%; aspect-ratio: 1 / 1; object-fit: cover; border-radius: 4px; }
+section:where(:not(.classic, .stage)) .profile-photo figcaption { color: var(--muted); font-size: 16px; line-height: 1.5; text-align: center; }
+section:where(:not(.classic, .stage)) .profile-rows { display: grid; gap: 10px; align-content: start; }
+section:where(:not(.classic, .stage)) .profile:not(.no-photo) .profile-rows { height: 300px; grid-auto-rows: minmax(0, 1fr); align-content: stretch; }
+section:where(:not(.classic, .stage)) .profile-row { display: grid; grid-template-columns: 150px 1fr; gap: 18px; align-items: center; padding-right: 18px; background: var(--band); }
+section:where(:not(.classic, .stage)) .profile-label { display: grid; place-items: center; height: 100%; min-height: 52px; padding: 8px 10px; background: var(--ink-b); color: #fff; text-align: center; font-size: calc(18px * var(--component-scale)); font-weight: 700; line-height: 1.3; }
+section:where(:not(.classic, .stage)) .profile-row p { margin: 0; font-size: calc(21px * var(--component-scale)); line-height: 1.5; }
+
+/* 場面図（::: scene）：人とエージェントの線画、吹き出し、矢印 */
+section:where(:not(.classic, .stage)) .scene { display: grid; grid-auto-flow: column; grid-auto-columns: 1fr; align-items: stretch; }
+section:where(:not(.classic, .stage)) .scene-group { min-width: 0; display: grid; grid-template-rows: 1fr auto; gap: 16px; padding: 0 16px; }
+section:where(:not(.classic, .stage)) .scene-group + .scene-group { border-left: 2px dashed #c6ccd1; }
+section:where(:not(.classic, .stage)) .scene-row { display: flex; align-items: flex-end; justify-content: center; }
+section:where(:not(.classic, .stage)) .scene-node { flex: 0 1 auto; min-width: 0; display: grid; justify-items: center; gap: 8px; }
+section:where(:not(.classic, .stage)) .scene-bubble { position: relative; margin: 0 0 8px; max-width: 300px; padding: 11px 15px; border-radius: 4px; background: var(--band); font-size: calc(18px * var(--component-scale)); line-height: 1.45; }
+section:where(:not(.classic, .stage)) .scene-bubble::after { content: ""; position: absolute; left: 26px; bottom: -6px; width: 12px; height: 12px; transform: rotate(45deg); background: inherit; }
+section:where(:not(.classic, .stage)) .scene-icon { display: grid; place-items: center; width: calc(74px * var(--component-scale)); height: calc(74px * var(--component-scale)); color: var(--ink-b); }
+section:where(:not(.classic, .stage)) .scene-icon svg { width: 100%; height: 100%; stroke-width: 1.4; }
+section:where(:not(.classic, .stage)) .scene-node.is-emphasis .scene-icon, section:where(:not(.classic, .stage)) .scene-node.is-emphasis .scene-label { color: var(--accent-d); }
+section:where(:not(.classic, .stage)) .scene-label { max-width: 220px; text-align: center; font-size: calc(19px * var(--component-scale)); font-weight: 700; line-height: 1.3; color: var(--ink-b); }
+section:where(:not(.classic, .stage)) .scene-frame { display: grid; justify-items: center; gap: 6px; padding: 12px 20px 14px; border: 2px solid var(--accent); border-radius: 4px; }
+section:where(:not(.classic, .stage)) .scene-frame > b { justify-self: start; color: var(--accent-d); font-size: 16px; line-height: 1.3; }
+section:where(:not(.classic, .stage)) .scene-frame.is-dashed { border-style: dashed; border-color: #b9c0c6; }
+section:where(:not(.classic, .stage)) .scene-frame.is-dashed > b { color: var(--muted); }
+section:where(:not(.classic, .stage)) .scene-arrow { position: relative; flex: 1 0 56px; max-width: 170px; height: 3px; margin: 0 10px calc(50px * var(--component-scale)); align-self: flex-end; background: #9aa1a8; }
+section:where(:not(.classic, .stage)) .scene-arrow::after { content: ""; position: absolute; right: -1px; top: 50%; transform: translateY(-50%); border: 7px solid transparent; border-left: 10px solid #9aa1a8; border-right: 0; }
+section:where(:not(.classic, .stage)) .scene-arrow > span { position: absolute; z-index: 1; left: 50%; bottom: 9px; transform: translateX(-50%); white-space: nowrap; padding: 0 6px; background: #fff; color: var(--ink-b); font-size: 17px; font-weight: 700; }
+section:where(:not(.classic, .stage)) .scene-caption { text-align: center; font-size: calc(21px * var(--component-scale)); font-weight: 700; line-height: 1.35; color: var(--ink-b); }
+section:where(:not(.classic, .stage)) .scene-caption small { display: block; margin-top: 4px; color: var(--muted); font-size: 17px; font-weight: 400; }
+
+/* ===================== 表紙・ページの種類（ほかの型から移したもの） ===================== */
+
+/* 表紙（中央寄せ）：上にタイトル、細い線の下に説明と登壇者 */
+section:where(:not(.classic, .stage)).cover.cover-centered { display: block; padding: 0; background: var(--band); }
+section:where(:not(.classic, .stage)).cover.cover-centered > h1 {
+  position: static; height: 408px; display: flex; align-items: flex-end; justify-content: center; max-width: none;
+  margin: 0; padding: 126px 72px 38px; border-bottom: 1px solid #b9c0c6;
+  text-align: center; font-size: 52px; line-height: 1.25; letter-spacing: .02em; overflow-wrap: anywhere;
+}
+section:where(:not(.classic, .stage)).cover.cover-centered > h1::before { display: block; left: 50%; top: 90px; width: 64px; height: 5px; margin-left: -32px; }
+section:where(:not(.classic, .stage)).cover.cover-centered > p.lead { position: static; max-width: none; margin: 40px 72px 0; text-align: center; font-size: 27px; line-height: 1.4; font-weight: 700; color: var(--ink-b); }
+section:where(:not(.classic, .stage)).cover.cover-centered > .blocks { position: static; margin: 36px 72px 0; text-align: center; }
+section:where(:not(.classic, .stage)).cover.cover-centered > p.lead + .blocks { margin-top: 26px; }
+section:where(:not(.classic, .stage)).cover.cover-centered > .blocks p { color: var(--ink-2); }
+
+/* 本文の型を明示するだけのクラス・ロゴを出さない指定（このテーマにはロゴがない） */
+section:where(:not(.classic, .stage)).standard > .blocks.is-visual { margin-top: 30px; }
+section:where(:not(.classic, .stage)).bc-accent > footer .bc-current, section:where(:not(.classic, .stage)) > footer.bc-accent .bc-current { color: var(--accent-d); }
+section:where(:not(.classic, .stage)).statement > .blocks { max-width: 1060px; margin: 32px var(--pad-x) 0; }
+
+/* 横長の本文・表・設定例 */
+section:where(.classic, .stage) {
+  --accent: #28677d;
+  --emphasis-color: var(--accent);
+  --paper: #ffffff;
+  --ink: #434343;
+  --muted: #707070;
+  --font-scale: 1.14;
+  --title-scale: 1;
+  --lead-scale: 1.2;
+  --component-scale: 1;
+  --footer-h: 43px;
+  --bc-left: 264px;
+  --bc-right: 79px;
+  --bc-top: 671px;
+  width: 1280px;
+  height: 720px;
+  box-sizing: border-box;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  padding: 0 0 var(--footer-h);
+  background: var(--paper);
+  color: var(--ink);
+  font-family: Inter, "SF Pro Text", "Hiragino Sans", "Yu Gothic UI", Meiryo, sans-serif;
+  font-size: 16px;
+  line-height: normal;
+  -webkit-font-smoothing: antialiased;
+}
+section:where(.classic, .stage) *, section:where(.classic, .stage) *::before, section:where(.classic, .stage) *::after { box-sizing: border-box; }
+section:where(.classic, .stage).cover, section:where(.classic, .stage).divider { --lead-scale: 1; }
+section:where(.classic, .stage).lead-s { --lead-scale: 1.12; }
+section:where(.classic, .stage).lead-m { --lead-scale: 1.16; }
+section:where(.classic, .stage).lead-l { --lead-scale: 1.26; }
+section:where(.classic, .stage).lead-1 { --lead-scale: 1; }
+section:where(.classic, .stage).lead-11 { --lead-scale: 1.1; }
+
+/* タイトル帯 */
+section:where(.classic, .stage) > h1 {
+  flex: none;
+  position: relative;
+  margin: 0;
+  padding: 21px 218px 15px 56px;
+  border-bottom: 1px solid color-mix(in srgb, var(--ink) 68%, var(--paper));
+  color: color-mix(in srgb, var(--ink) 90%, #000);
+  font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Hiragino Sans", sans-serif;
+  font-synthesis: none;
+  font-feature-settings: "palt" 1;
+  font-kerning: normal;
+  font-size: calc(29px * var(--font-scale) * var(--title-scale));
+  line-height: 1.3;
+  letter-spacing: -.005em;
+  font-weight: 700;
+}
+
+/* リード文 */
+section:where(.classic, .stage) > p.lead {
+  flex: none;
+  margin: 27px 32px 0 56px;
+  color: var(--ink);
+  font-size: calc(24px * var(--font-scale) * var(--lead-scale));
+  line-height: 1.58;
+  letter-spacing: -.025em;
+  font-weight: 500;
+}
+
+section:where(.classic, .stage) strong { font-weight: 700; color: var(--emphasis-color, inherit); }
+section:where(.classic, .stage) a { color: color-mix(in srgb, var(--accent) 82%, var(--ink)); text-decoration: underline; text-decoration-thickness: .07em; text-underline-offset: .15em; }
+
+/* 本文領域 */
+section:where(.classic, .stage) > .blocks {
+  flex: none;
+  min-height: 0;
+  margin: 34px 56px 0;
+  display: grid;
+  gap: 22px;
+}
+section:where(.classic, .stage) > .blocks:not(:has(*)) { display: none; }
+section:where(.classic, .stage) > .blocks.is-visual { margin-top: 18px; }
+section:where(.classic, .stage) > p.lead + .blocks.is-visual > .image-block:first-child { margin-top: 10px; }
+section:where(.classic, .stage) > .blocks > * { margin: 0; min-width: 0; }
+
+section:where(.classic, .stage).centered > .blocks { flex: 1; align-content: safe center; padding-bottom: 48px; }
+section:where(.classic, .stage).centered > .blocks.is-visual, section:where(.classic, .stage).standard > .blocks.is-visual { margin-top: 34px; }
+
+/* 図 */
+section:where(.classic, .stage) .image-block { margin: 0; display: grid; gap: 8px; justify-items: center; }
+section:where(.classic, .stage) .image-block img { display: block; max-width: 100%; object-fit: contain; }
+section:where(.classic, .stage) .image-block img:not([style*="height"]) { max-height: 440px; }
+/* 画像が主役のページ：フッターを出さず、下端まで比率を保って最大表示する */
+section:where(.classic, .stage).full { padding-bottom: 0; }
+section:where(.classic, .stage).full::before, section:where(.classic, .stage).full::after, section:where(.classic, .stage).full > footer { display: none; }
+section:where(.classic, .stage).full > .blocks { flex: 1; margin-bottom: 0; grid-template-rows: minmax(0, 1fr); }
+section:where(.classic, .stage).full > h1 + .blocks { margin-top: 19px; }
+section:where(.classic, .stage).full .image-block { height: 100%; min-height: 0; margin-top: 0 !important; padding-bottom: 8px; }
+section:where(.classic, .stage).full .image-block img { width: 100%; height: 100%; min-height: 0; max-height: none; }
+section:where(.classic, .stage).full > h1 + .blocks .image-block img { transform: translateY(-6px) scale(var(--full-scale, 1)); }
+
+/* 段落（ブロックとして置いた地の文） */
+section:where(.classic, .stage) > .blocks > p:not(.image-block) { font-size: calc(22px * var(--font-scale) * var(--component-scale)); line-height: 1.48; }
+
+/* 補足の囲み（引用） */
+section:where(.classic, .stage) blockquote {
+  margin: 0;
+  padding: 18px 24px;
+  border: 0;
+  border-left: 5px solid var(--accent);
+  border-radius: 0;
+  background: color-mix(in srgb, var(--ink) 5%, var(--paper));
+}
+section:where(.classic, .stage) blockquote > small { display: block; font-size: calc(12.5px * var(--font-scale) * var(--component-scale)); font-weight: 800; letter-spacing: .1em; color: var(--accent); }
+section:where(.classic, .stage) blockquote p { margin: 6px 0 0; font-size: calc(21px * var(--font-scale) * var(--component-scale)); line-height: 1.48; font-weight: 680; }
+
+/* 引用（::: quote） */
+section:where(.classic, .stage) .quote-block { margin: 0; padding: 8px 0 6px 30px; border-left: 5px solid var(--accent); }
+section:where(.classic, .stage) .quote-block p { margin: 0; font-size: calc(30px * var(--font-scale) * var(--component-scale)); line-height: 1.49; color: var(--ink); }
+section:where(.classic, .stage) .quote-block p + p { margin-top: .5em; }
+section:where(.classic, .stage) .quote-block p.quote-cite { margin-top: 16px; font-size: calc(19.5px * var(--font-scale) * var(--component-scale)); line-height: 1.5; color: var(--muted); }
+
+/* 箇条書き */
+section:where(.classic, .stage) > .blocks > ul,
+section:where(.classic, .stage) > .blocks .scaled > ul,
+section:where(.classic, .stage) .bullet-block > ul {
+  margin: 0; padding: 0; display: grid; gap: 12px; list-style: none;
+}
+section:where(.classic, .stage) > .blocks > ul > li,
+section:where(.classic, .stage) > .blocks .scaled > ul > li,
+section:where(.classic, .stage) .bullet-block > ul > li {
+  position: relative; padding-left: 22px;
+  font-size: calc(22px * var(--font-scale) * var(--component-scale)); line-height: 1.48;
+}
+section:where(.classic, .stage) > .blocks > ul > li::before,
+section:where(.classic, .stage) > .blocks .scaled > ul > li::before,
+section:where(.classic, .stage) .bullet-block > ul > li::before {
+  content: ""; position: absolute; left: 0; top: .62em; width: 7px; height: 7px; border-radius: 1px; background: var(--accent);
+}
+section:where(.classic, .stage) > .blocks li > ul { margin: 12px 0 0 12px; }
+section:where(.classic, .stage) .bullet-block { display: grid; gap: 14px; }
+section:where(.classic, .stage) .bullet-block.top-rule-on { padding-top: 17px; border-top: 1px solid color-mix(in srgb, var(--ink) 22%, var(--paper)); }
+section:where(.classic, .stage) .bullet-block > h3 { margin: 0; color: var(--muted); font-size: calc(16px * var(--font-scale) * var(--component-scale)); font-weight: 700; letter-spacing: .05em; line-height: 1.28; }
+
+/* 表 */
+section:where(.classic, .stage) table {
+  width: 100%; border-collapse: collapse; border-spacing: 0; color: var(--ink);
+  font-size: calc(17px * var(--font-scale) * var(--component-scale));
+}
+section:where(.classic, .stage) th, section:where(.classic, .stage) td {
+  text-align: left; padding: 10px 13px; line-height: 1.4;
+  border: 0; border-right: 1px solid #d3d6d6; border-bottom: 1px solid #d3d6d6; border-radius: 0; background: var(--paper);
+}
+section:where(.classic, .stage) th:last-child, section:where(.classic, .stage) td:last-child { border-right: 0; }
+section:where(.classic, .stage) th {
+  background: color-mix(in srgb, var(--ink) 91%, var(--accent)); color: #fff;
+  font-size: calc(17px * var(--font-scale) * var(--component-scale)); font-weight: 680; letter-spacing: .025em;
+}
+section:where(.classic, .stage) td:first-child { background: color-mix(in srgb, var(--ink) 5%, var(--paper)); font-weight: 700; }
+section:where(.classic, .stage) th strong { color: inherit; }
+
+/* コード */
+section:where(.classic, .stage) .code-block { margin: 0; display: grid; gap: 16px; justify-items: center; }
+section:where(.classic, .stage) .code-window { width: 100%; max-width: 980px; border-radius: 2px; overflow: hidden; background: #2a2438; box-shadow: 0 14px 36px rgba(22, 17, 44, .2); }
+section:where(.classic, .stage) .code-chrome { display: flex; align-items: center; gap: 7px; padding: 12px 16px; background: rgba(255, 255, 255, .06); }
+section:where(.classic, .stage) .code-chrome i { flex: none; width: 11px; height: 11px; border-radius: 50%; background: rgba(255, 255, 255, .26); }
+section:where(.classic, .stage) .code-chrome span { flex: 1; margin-right: 43px; text-align: center; color: rgba(255, 255, 255, .55); font-size: calc(13px * var(--font-scale) * var(--component-scale)); font-weight: 600; }
+section:where(.classic, .stage) .code-window pre, section:where(.classic, .stage) .code-window marp-pre {
+  display: block; margin: 0; padding: 22px 26px 26px; background: none; color: #e9e6f2;
+  font-family: "SF Mono", ui-monospace, Menlo, Consolas, monospace;
+  font-size: calc(17px * var(--font-scale) * var(--component-scale)); line-height: 1.66;
+  white-space: pre-wrap; overflow-wrap: anywhere;
+}
+section:where(.classic, .stage) .code-window pre code { font: inherit; background: none; color: inherit; padding: 0; white-space: inherit; }
+section:where(.classic, .stage) .code-window .hljs-keyword, section:where(.classic, .stage) .code-window .hljs-literal { color: #ff7fab; }
+section:where(.classic, .stage) .code-window .hljs-string { color: #efd06d; }
+section:where(.classic, .stage) .code-window .hljs-comment { color: #8e88a6; }
+section:where(.classic, .stage) .code-window .hljs-number { color: #82c8ff; }
+section:where(.classic, .stage) .code-window .hljs-variable { color: #9fd6ff; }
+section:where(.classic, .stage) .code-window .hljs-attr { color: #9fd6ff; }
+section:where(.classic, .stage) .code-window .hljs-type, section:where(.classic, .stage) .code-window .hljs-title, section:where(.classic, .stage) .code-window .hljs-built_in { color: #b8e28a; }
+section:where(.classic, .stage) .code-caption { margin: 0; text-align: center; font-size: calc(24px * var(--font-scale) * var(--component-scale)); font-weight: 700; }
+
+/* 掛け合い（縦積み） */
+section:where(.classic, .stage) .dialogue { display: grid; gap: 30px; }
+section:where(.classic, .stage) .dialogue-row { display: grid; gap: 12px; justify-items: start; }
+section:where(.classic, .stage) .dialogue-row.is-right { justify-items: end; }
+section:where(.classic, .stage) .dialogue-bubble {
+  position: relative; margin: 0; font-weight: 500; max-width: 88%; padding: 22px 28px; border-radius: 2px;
+  background: color-mix(in srgb, var(--ink) 5.5%, var(--paper));
+  font-size: calc(25px * var(--font-scale) * var(--component-scale)); line-height: 1.5;
+}
+section:where(.classic, .stage) .dialogue-bubble::before { content: ""; position: absolute; bottom: -6px; left: 38px; width: 13px; height: 13px; transform: rotate(45deg); background: inherit; }
+section:where(.classic, .stage) .dialogue-row.is-right .dialogue-bubble { background: color-mix(in srgb, var(--accent) 11%, var(--paper)); }
+section:where(.classic, .stage) .dialogue-row.is-right .dialogue-bubble::before { left: auto; right: 38px; }
+section:where(.classic, .stage) .dialogue-who { display: grid; justify-items: center; gap: 6px; padding: 0 16px; }
+section:where(.classic, .stage) .dialogue .person-icon { display: grid; place-items: center; width: calc(88px * var(--component-scale)); height: calc(88px * var(--component-scale)); color: var(--ink); }
+section:where(.classic, .stage) .dialogue .person-icon svg { width: 100%; height: 100%; stroke-width: 1.3; }
+/* 人物アイコンを顔写真にした場合。枠の大きさは線画アイコンと同じにし、画像は引き伸ばさず角丸の四角で収める */
+section:where(.classic, .stage) .dialogue .person-icon.has-photo { background: none; border-radius: 0; }
+section:where(.classic, .stage) .dialogue .person-icon.has-photo img { display: block; width: 100%; height: 100%; object-fit: contain; border-radius: 16%; }
+section:where(.classic, .stage) .dialogue-speaker { font-size: calc(18px * var(--font-scale) * var(--component-scale)); font-weight: 760; color: var(--ink); }
+
+/* 語りかけ */
+section:where(.classic, .stage) .speech-block { width: 100%; min-width: 0; }
+section:where(.classic, .stage) .speech-message {
+  position: relative; display: flex; align-items: center; width: 100%; min-height: 180px; padding: 32px 40px;
+  background: #ededed; color: var(--ink);
+  font-size: max(calc(34px * var(--font-scale) * var(--component-scale)), calc(34px * var(--font-scale) * var(--lead-scale)));
+  font-weight: 500; line-height: 1.6; overflow-wrap: anywhere;
+}
+section:where(.classic, .stage) .speech-message p { margin: 0; width: 100%; font: inherit; color: inherit; line-height: inherit; }
+section:where(.classic, .stage) .speech-bubble .speech-message { border-radius: 12px; }
+section:where(.classic, .stage) .speech-bubble .speech-message::after { content: ""; position: absolute; left: 62px; bottom: -18px; border-right: 22px solid transparent; border-top: 20px solid #ededed; }
+section:where(.classic, .stage) .speech-speaker { display: flex; align-items: center; gap: 14px; margin: 24px 0 0 24px; color: var(--ink); }
+section:where(.classic, .stage) .speech-speaker svg { width: 96px; height: 96px; flex: none; }
+section:where(.classic, .stage) .speech-speaker .speech-speaker-photo { display: block; width: 96px; height: 96px; flex: none; object-fit: contain; border-radius: 16%; }
+section:where(.classic, .stage) .speech-speaker span { font-size: calc(28.8px * var(--font-scale)); font-weight: 500; }
+
+/* 対象と目的 */
+section:where(.classic, .stage) .purpose { display: grid; justify-items: stretch; }
+section:where(.classic, .stage) .purpose-row { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 30px; align-items: center; padding: 20px 24px; border-radius: 2px; }
+section:where(.classic, .stage) .purpose-row.is-emphasis { background: color-mix(in srgb, var(--accent) 7%, var(--paper)); }
+section:where(.classic, .stage) .purpose-label {
+  display: grid; place-items: center; min-width: calc(164px * var(--component-scale)); min-height: calc(96px * var(--component-scale));
+  padding: 16px 20px; border-radius: 2px; background: color-mix(in srgb, var(--ink) 58%, var(--paper)); color: #fff; text-align: center;
+  font-size: calc(21px * var(--font-scale) * var(--component-scale)); font-weight: 760; line-height: 1.3;
+}
+section:where(.classic, .stage) .purpose-label strong { color: inherit; font-weight: inherit; }
+section:where(.classic, .stage) .purpose-row.is-emphasis .purpose-label { background: var(--accent); }
+section:where(.classic, .stage) .purpose ul { margin: 0; padding: 0; list-style: none; display: grid; gap: 12px; }
+section:where(.classic, .stage) .purpose li { position: relative; padding-left: 21px; font-size: calc(21px * var(--font-scale) * var(--component-scale)); line-height: 1.5; }
+section:where(.classic, .stage) .purpose li::before { content: ""; position: absolute; left: 0; top: .6em; width: 8px; height: 8px; border-radius: 50%; background: var(--accent); }
+section:where(.classic, .stage) .purpose-row.is-emphasis li { font-weight: 700; }
+section:where(.classic, .stage) .purpose-arrow {
+  position: relative; justify-self: center; display: block; width: calc(30px * var(--component-scale)); height: calc(26px * var(--component-scale));
+  margin: 14px 0 calc(26px * var(--component-scale)); background: color-mix(in srgb, var(--accent) 62%, var(--paper));
+}
+section:where(.classic, .stage) .purpose-arrow::after {
+  content: ""; position: absolute; top: 100%; left: 50%; transform: translateX(-50%);
+  border: calc(27px * var(--component-scale)) solid transparent; border-top: calc(26px * var(--component-scale)) solid color-mix(in srgb, var(--accent) 62%, var(--paper)); border-bottom: 0;
+}
+
+/* アジェンダ */
+section:where(.classic, .stage) .agenda ol { margin: 0; padding: 0; list-style: none; display: grid; gap: 18px; counter-reset: agenda; }
+section:where(.classic, .stage) .agenda li { counter-increment: agenda; display: grid; grid-template-columns: 64px 1fr; gap: 20px; align-items: start; }
+section:where(.classic, .stage) .agenda li::before { content: counter(agenda); color: var(--accent); font-size: calc(34px * var(--font-scale) * var(--component-scale)); font-weight: 780; line-height: 1.15; font-variant-numeric: tabular-nums; letter-spacing: -.02em; }
+section:where(.classic, .stage) .agenda-copy strong { display: block; padding-top: 4px; color: inherit; font-size: calc(23px * var(--font-scale) * var(--component-scale)); line-height: 1.4; font-weight: 700; }
+section:where(.classic, .stage) .agenda-copy p { margin: 4px 0 0; color: var(--muted); font-size: calc(15px * var(--font-scale) * var(--component-scale)); line-height: 1.5; }
+
+/* フッター（パンくず）とページ番号 */
+section:where(.classic, .stage) > footer {
+  position: absolute; left: var(--bc-left); right: var(--bc-right); top: var(--bc-top); height: 42px;
+  display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 3px 6px;
+  color: var(--muted); font-size: calc(14px * var(--font-scale)); line-height: 1.6; font-weight: 400; letter-spacing: 0;
+}
+section:where(.classic, .stage) > footer .bc-current { color: var(--ink); font-weight: 750; border-bottom: 2px solid var(--accent); }
+section:where(.classic, .stage) > footer .bc-sep { color: var(--muted); }
+section:where(.classic, .stage)::after {
+  content: attr(data-marpit-pagination);
+  position: absolute; right: 30px; top: 677px; bottom: auto; padding: 0; line-height: normal;
+  color: #7f7f7f; font-size: calc(18px * var(--font-scale)); font-weight: 620; font-variant-numeric: tabular-nums;
+}
+
+/* 章扉 */
+section:where(.classic, .stage).divider { justify-content: center; padding: 64px 0 var(--footer-h); }
+section:where(.classic, .stage).divider { background-image: linear-gradient(color-mix(in srgb, var(--ink) 68%, var(--paper)), color-mix(in srgb, var(--ink) 68%, var(--paper))); background-repeat: no-repeat; background-position: 0 64px; background-size: 100% 1px; }
+section:where(.classic, .stage).divider > h1 { padding: 48px 68px 51px; border: 0; background: color-mix(in srgb, var(--ink) 7%, var(--paper)); font-size: calc(44px * var(--font-scale) * var(--title-scale)); line-height: 1.25; letter-spacing: -.015em; }
+section:where(.classic, .stage).divider > p.lead { max-width: 820px; margin: 27px 68px 0; color: var(--muted); font-size: calc(22px * var(--font-scale) * var(--lead-scale)); line-height: 1.6; }
+section:where(.classic, .stage).divider > footer { display: none; }
+
+/* 左下の著作権表示（本文ページ） */
+section:where(.classic, .stage)::before {
+  content: "Yudai Jinno"; position: absolute; left: 34px; top: 683px;
+  color: #9b9b9b; font-size: calc(11px * var(--font-scale)); font-weight: 520; letter-spacing: .045em; line-height: normal;
+}
+section:where(.classic, .stage).full::before { display: none; }
+
+/* リード文を主役にするページ */
+section:where(.classic, .stage).statement > p.lead { max-width: 1030px; margin: 88px 76px 0; font-size: calc(34px * var(--font-scale) * var(--lead-scale)); line-height: 1.5; font-weight: 680; letter-spacing: -.012em; }
+section:where(.classic, .stage).statement > p.lead::before { content: ""; display: block; width: 54px; height: 4px; margin-bottom: 25px; background: var(--accent); }
+section:where(.classic, .stage).statement > .blocks { max-width: 1030px; margin: 32px 76px 0; }
+section:where(.classic, .stage).bc-accent > footer .bc-current, section:where(.classic, .stage) > footer.bc-accent .bc-current { color: var(--accent); }
+
+
+
+/* 表紙（左に帯） */
+section:where(.classic, .stage).cover { justify-content: center; padding: 0 84px var(--footer-h) 116px; background: color-mix(in srgb, var(--ink) 7%, var(--paper)); }
+section:where(.classic, .stage).cover::before { content: ""; position: absolute; top: 207px; left: 76px; width: 8px; height: 292px; background: var(--accent); }
+section:where(.classic, .stage).cover > h1 { max-width: 970px; padding: 0; border: 0; font-size: calc(50px * var(--font-scale) * var(--title-scale)); line-height: 1.24; letter-spacing: -.018em; }
+section:where(.classic, .stage).cover > p.lead { max-width: 790px; margin: 27px 0 0; color: color-mix(in srgb, var(--ink) 82%, var(--paper)); font-size: calc(22px * var(--font-scale) * var(--lead-scale)); line-height: 1.65; font-weight: 560; }
+section:where(.classic, .stage).cover > .blocks { margin: 34px 0 0; }
+section:where(.classic, .stage).cover > .blocks:not(:has(*)) { display: block; }
+section:where(.classic, .stage).cover > .blocks p { margin: 0; font-size: calc(21px * var(--font-scale)); line-height: 1.4; }
+section:where(.classic, .stage).closing::after { display: none; }
+section:where(.classic, .stage).cover::after { content: "Yudai Jinno"; position: absolute; left: 34px; right: auto; top: 683px; color: #9b9b9b; font-size: calc(11px * var(--font-scale)); font-weight: 520; letter-spacing: .045em; }
+section:where(.classic, .stage).cover.cover-centered::after { display: none; }
+section:where(.classic, .stage).cover > footer, section:where(.classic, .stage).closing > footer { display: none; }
+
+/* 表紙（中央寄せ）：上408pxにタイトル、線の下に説明と登壇者 */
+section:where(.classic, .stage).cover.cover-centered { display: block; padding: 0; background: color-mix(in srgb, var(--paper) 94%, var(--ink)); }
+section:where(.classic, .stage).cover.cover-centered::before { display: none; }
+section:where(.classic, .stage).cover.cover-centered > h1 {
+  height: 408px; display: flex; align-items: flex-end; justify-content: center; max-width: none;
+  padding: 126px 72px 38px; border-bottom: 1px solid color-mix(in srgb, var(--ink) 40%, var(--paper));
+  text-align: center; font-size: calc(44px * var(--font-scale) * var(--title-scale)); font-weight: 800; line-height: 1.22; overflow-wrap: anywhere;
+}
+section:where(.classic, .stage).cover.cover-centered > p.lead { max-width: none; margin: 42px 72px 0; text-align: center; font-size: calc(24px * var(--font-scale) * var(--lead-scale)); line-height: 1.35; font-weight: 700; color: var(--ink); }
+section:where(.classic, .stage).cover.cover-centered > .blocks { margin: 42px 72px 0; text-align: center; }
+section:where(.classic, .stage).cover.cover-centered > p.lead + .blocks { margin-top: 32px; }
+section:where(.classic, .stage).cover.cover-centered > .blocks p { color: var(--ink); }
+
+/* 裏表紙 */
+section:where(.classic, .stage).closing { padding: 0; justify-content: center; align-items: center; background: #fff; }
+section:where(.classic, .stage).closing > h1 { border: 0; padding: 0; font-size: 50px; }
+
+/* 比較（左右の列） */
+section:where(.classic, .stage) .compare { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; }
+section:where(.classic, .stage) .compare.cols-3 { grid-template-columns: repeat(3, 1fr); }
+section:where(.classic, .stage) .compare article { min-width: 0; overflow: hidden; border: 1px solid #d9dcdc; border-radius: 0; background: var(--paper); }
+section:where(.classic, .stage) .compare h3 {
+  margin: 0; padding: 14px 18px; border-top: 3px solid var(--accent); border-bottom: 1px solid #d9dcdc;
+  background: color-mix(in srgb, var(--ink) 4%, var(--paper)); color: var(--ink);
+  font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Hiragino Sans", sans-serif; font-synthesis: none; font-feature-settings: "palt" 1;
+  font-size: calc(20px * var(--font-scale) * var(--component-scale)); font-weight: 700; line-height: 1.28; letter-spacing: -.005em;
+}
+section:where(.classic, .stage) .compare ul { margin: 0; padding: 16px 19px; display: grid; gap: 9px; list-style: none; }
+section:where(.classic, .stage) .compare li { position: relative; padding-left: 17px; font-size: calc(17px * var(--font-scale) * var(--component-scale)); line-height: 1.45; }
+section:where(.classic, .stage) .compare li::before { content: ""; position: absolute; left: 0; top: .62em; width: 6px; height: 6px; border-radius: 50%; background: var(--accent); }
+section:where(.classic, .stage) .compare small { display: block; padding: 0 19px 16px; color: var(--muted); font-size: calc(14px * var(--font-scale) * var(--component-scale)); line-height: 1.48; }
+
+/* 流れ */
+section:where(.classic, .stage) .flow { display: flex; align-items: stretch; }
+section:where(.classic, .stage) .flow.is-horizontal { flex-direction: row; }
+section:where(.classic, .stage) .flow.is-vertical { flex-direction: column; }
+section:where(.classic, .stage) .flow-seq { display: flex; align-items: stretch; min-width: 0; }
+section:where(.classic, .stage) .flow.is-horizontal .flow-seq { flex: 1; }
+section:where(.classic, .stage) .flow.is-vertical .flow-seq { flex-direction: column; }
+section:where(.classic, .stage) .flow article { flex: 1; min-width: 0; padding: 17px 19px; border: 1.5px solid color-mix(in srgb, var(--ink) 24%, var(--paper)); border-radius: 2px; background: var(--paper); }
+section:where(.classic, .stage) .flow article.is-emphasis { border-color: var(--accent); background: color-mix(in srgb, var(--accent) 8%, var(--paper)); }
+section:where(.classic, .stage) .flow article strong { display: block; color: inherit; font-size: calc(19px * var(--font-scale) * var(--component-scale)); line-height: 1.35; }
+section:where(.classic, .stage) .flow article p { margin: 6px 0 0; color: var(--muted); font-size: calc(15px * var(--font-scale) * var(--component-scale)); line-height: 1.45; }
+section:where(.classic, .stage) .flow-arrow { position: relative; flex: none; align-self: center; background: color-mix(in srgb, var(--accent) 55%, var(--paper)); }
+section:where(.classic, .stage) .flow.is-horizontal .flow-arrow { width: 34px; height: 2.5px; margin: 0 4px; }
+section:where(.classic, .stage) .flow.is-horizontal .flow-arrow::after { content: ""; position: absolute; right: -1px; top: 50%; transform: translateY(-50%); border: 7px solid transparent; border-left: 10px solid color-mix(in srgb, var(--accent) 55%, var(--paper)); border-right: 0; }
+section:where(.classic, .stage) .flow.is-vertical .flow-arrow { width: 2.5px; height: 22px; margin: 4px 0; }
+section:where(.classic, .stage) .flow.is-vertical .flow-arrow::after { content: ""; position: absolute; bottom: -1px; left: 50%; transform: translateX(-50%); border: 7px solid transparent; border-top: 10px solid color-mix(in srgb, var(--accent) 55%, var(--paper)); border-bottom: 0; }
+
+/* 語り */
+section:where(.classic, .stage) .prose { display: grid; gap: 22px; }
+section:where(.classic, .stage) .prose p { margin: 0; font-size: calc(25px * var(--font-scale) * var(--component-scale)); line-height: 1.78; font-weight: 400; }
+
+/* 自己紹介 */
+section:where(.classic, .stage) .profile { display: grid; grid-template-columns: 300px 1fr; gap: 34px; align-items: start; }
+section:where(.classic, .stage) .profile.no-photo { grid-template-columns: 1fr; }
+section:where(.classic, .stage) .profile-photo { margin: 0; display: grid; gap: 10px; justify-items: center; }
+section:where(.classic, .stage) .profile-photo img { width: 100%; aspect-ratio: 1 / 1; object-fit: cover; border-radius: 2px; }
+section:where(.classic, .stage) .profile-photo figcaption { color: var(--muted); font-size: calc(14px * var(--font-scale) * var(--component-scale)); line-height: 1.5; text-align: center; }
+section:where(.classic, .stage) .profile-rows { display: grid; gap: 14px; align-content: start; background: color-mix(in srgb, var(--ink) 5%, var(--paper)); }
+section:where(.classic, .stage) .profile:not(.no-photo) .profile-rows { height: 300px; grid-auto-rows: minmax(0, 1fr); gap: 10px; align-content: stretch; }
+section:where(.classic, .stage) .profile-row { display: grid; grid-template-columns: 150px 1fr; gap: 18px; align-items: center; }
+section:where(.classic, .stage) .profile:not(.no-photo) .profile-row { min-height: 0; }
+section:where(.classic, .stage) .profile-label {
+  display: grid; place-items: center; min-height: 52px; padding: 8px 10px; border-radius: 2px;
+  background: color-mix(in srgb, var(--ink) 91%, var(--accent)); color: #fff; text-align: center;
+  font-size: calc(16px * var(--font-scale) * var(--component-scale)); font-weight: 720; line-height: 1.3;
+}
+section:where(.classic, .stage) .profile:not(.no-photo) .profile-label { height: 100%; min-height: 0; }
+section:where(.classic, .stage) .profile-row p { margin: 0; font-size: calc(19px * var(--font-scale) * var(--component-scale)); line-height: 1.5; }
+
+/* リンク */
+section:where(.classic, .stage) .links { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+section:where(.classic, .stage) .links.cols-1 { grid-template-columns: minmax(0, 640px); }
+section:where(.classic, .stage) .links article { min-width: 0; display: grid; grid-template-columns: 46px 1fr; gap: 15px; align-items: start; padding: 18px 20px; border: 1px solid #d9dcdc; border-radius: 2px; background: var(--paper); }
+section:where(.classic, .stage) .link-icon { display: grid; place-items: center; width: 44px; height: 44px; border-radius: 2px; background: color-mix(in srgb, var(--accent) 11%, var(--paper)); color: var(--accent); }
+section:where(.classic, .stage) .link-icon svg { width: 21px; height: 21px; }
+section:where(.classic, .stage) .link-copy strong { display: block; color: inherit; font-size: calc(17.5px * var(--font-scale) * var(--component-scale)); line-height: 1.35; }
+section:where(.classic, .stage) .link-url { display: block; margin-top: 3px; color: var(--accent); font-size: calc(14px * var(--font-scale) * var(--component-scale)); font-weight: 650; word-break: break-all; }
+section:where(.classic, .stage) .link-copy p { margin: 5px 0 0; color: var(--muted); font-size: calc(13.5px * var(--font-scale) * var(--component-scale)); line-height: 1.5; }
+
+/* 場面図 */
+section:where(.classic, .stage) .scene { display: grid; grid-auto-flow: column; grid-auto-columns: 1fr; align-items: stretch; }
+section:where(.classic, .stage) .scene-group { min-width: 0; display: grid; grid-template-rows: 1fr auto; gap: 16px; padding: 0 16px; }
+section:where(.classic, .stage) .scene-group + .scene-group { border-left: 2px dashed color-mix(in srgb, var(--muted) 42%, var(--paper)); }
+section:where(.classic, .stage) .scene-row { display: flex; align-items: flex-end; justify-content: center; }
+section:where(.classic, .stage) .scene-node { flex: 0 1 auto; min-width: 0; display: grid; justify-items: center; gap: 8px; }
+section:where(.classic, .stage) .scene-bubble { position: relative; margin: 0 0 8px; max-width: 300px; padding: 11px 15px; border-radius: 2px; background: color-mix(in srgb, var(--ink) 6%, var(--paper)); font-size: calc(15.5px * var(--font-scale) * var(--component-scale)); line-height: 1.42; }
+section:where(.classic, .stage) .scene-bubble::after { content: ""; position: absolute; left: 26px; bottom: -6px; width: 12px; height: 12px; transform: rotate(45deg); background: inherit; }
+section:where(.classic, .stage) .scene-icon { display: grid; place-items: center; width: calc(74px * var(--component-scale)); height: calc(74px * var(--component-scale)); color: var(--ink); }
+section:where(.classic, .stage) .scene-icon svg { width: 100%; height: 100%; stroke-width: 1.4; }
+section:where(.classic, .stage) .scene-node.is-emphasis .scene-icon, section:where(.classic, .stage) .scene-node.is-emphasis .scene-label { color: var(--accent); }
+section:where(.classic, .stage) .scene-label { max-width: 220px; text-align: center; font-size: calc(16.5px * var(--font-scale) * var(--component-scale)); font-weight: 700; line-height: 1.3; }
+section:where(.classic, .stage) .scene-frame { display: grid; justify-items: center; gap: 6px; padding: 12px 20px 14px; border: 2px solid color-mix(in srgb, var(--accent) 58%, var(--paper)); border-radius: 2px; }
+section:where(.classic, .stage) .scene-frame > b { justify-self: start; color: color-mix(in srgb, var(--accent) 85%, var(--ink)); font-size: calc(14px * var(--font-scale) * var(--component-scale)); font-weight: 800; line-height: 1.3; }
+section:where(.classic, .stage) .scene-frame.is-dashed { border-style: dashed; border-color: color-mix(in srgb, var(--muted) 62%, var(--paper)); }
+section:where(.classic, .stage) .scene-frame.is-dashed > b { color: var(--muted); }
+section:where(.classic, .stage) .scene-arrow { position: relative; flex: 1 0 56px; max-width: 170px; height: 3px; margin: 0 10px calc(50px * var(--component-scale)); align-self: flex-end; background: color-mix(in srgb, var(--ink) 52%, var(--paper)); }
+section:where(.classic, .stage) .scene-arrow::after { content: ""; position: absolute; right: -1px; top: 50%; transform: translateY(-50%); border: 7px solid transparent; border-left: 10px solid color-mix(in srgb, var(--ink) 52%, var(--paper)); border-right: 0; }
+section:where(.classic, .stage) .scene-arrow > span { position: absolute; z-index: 1; left: 50%; bottom: 9px; transform: translateX(-50%); white-space: nowrap; padding: 0 6px; background: var(--paper); color: var(--ink); font-size: calc(14.5px * var(--font-scale) * var(--component-scale)); font-weight: 700; }
+section:where(.classic, .stage) .scene-caption { text-align: center; font-size: calc(19px * var(--font-scale) * var(--component-scale)); font-weight: 800; line-height: 1.35; }
+section:where(.classic, .stage) .scene-caption small { display: block; margin-top: 4px; color: var(--muted); font-size: calc(15px * var(--font-scale) * var(--component-scale)); font-weight: 600; }
+
+/* 大きな表紙と章扉 */
+section:where(.stage) { --stage-color: var(--accent); --footer-h: 55px; --bc-left: 324px; --bc-right: 70px; --bc-top: 664px; }
+section:where(.stage):not(.cover):not(.divider):not(.closing):not(.no-logo) { background-image: none; }
+
+
+section:where(.stage)::before { top: 670px; font-size: 18px; color: var(--muted); }
+section:where(.stage)::after { top: 670px; font-family: Arial, sans-serif; font-size: 17.7778px; font-weight: 400; color: #595959; }
+
+section:where(.stage).cover, section:where(.stage).divider, section:where(.stage).closing {
+  background-color: var(--stage-color); background-size: 100% 100%; background-repeat: no-repeat; color: #fff;
+}
+section:where(.stage).cover > h1, section:where(.stage).cover > p, section:where(.stage).cover > p.lead, section:where(.stage).cover > .blocks,
+section:where(.stage).divider > h1, section:where(.stage).divider > p.lead {
+  font-family: "Stage Sans", sans-serif; font-feature-settings: normal; font-kerning: normal; letter-spacing: 0; color: #fff;
+}
+section:where(.stage).cover strong, section:where(.stage).divider strong { color: inherit; }
+
+/* 表紙 */
+section:where(.stage).cover { background-image: none; background-position: 0 0; background-size: 100% 100%; justify-content: flex-start; padding: 216px 69.333px 40px; }
+section:where(.stage).cover::before, section:where(.stage).cover::after { display: none; }
+section:where(.stage).cover > h1 { max-width: none; padding: 0 0 6px; font-weight: 700; font-size: calc(67.5556px * var(--title-scale)); line-height: 1.35; }
+section:where(.stage).cover > p.lead { max-width: none; margin: 12px 0 0; font-weight: 700; font-size: calc(42px * var(--lead-scale, 1)); line-height: 1.35; }
+section:where(.stage).cover > .blocks { margin: auto 0 0; padding-top: 32px; }
+section:where(.stage).cover > .blocks:not(:has(*)) { display: none; }
+section:where(.stage).cover > .blocks p { margin: 0; color: #fff; font-size: 26px; font-weight: 400; line-height: 1.55; }
+
+/* 章扉 */
+section:where(.stage).divider, section:where(.stage).divider:not(.no-logo), section:where(.stage).divider.no-logo { background-image: none; background-size: 100% 100%; background-position: 0 0; justify-content: center; padding: 125px 69.333px calc(80px + var(--footer-h)); }
+section:where(.stage).divider::before { display: none; }
+section:where(.stage).divider > h1 { padding: 0; background: none; font-weight: 700; font-size: calc(60.4444px * var(--title-scale)); line-height: 1.38; }
+section:where(.stage).divider > p.lead { max-width: none; margin: 25px 0 0; font-weight: 700; font-size: calc(26.6667px * var(--lead-scale)); line-height: 1.4; }
+section:where(.stage).divider::after { color: #fff; }
+
+/* 裏表紙 */
+section:where(.stage).closing { background-image: none; }
+section:where(.stage).closing > h1 { color: white; }
+
+/* 表紙の中央寄せ指定があっても、イベント版の表紙を優先する */
+section:where(.stage).cover.cover-centered { display: flex; padding: 216px 69.333px 40px; background: var(--stage-color); }
+section:where(.stage).cover.cover-centered > h1 { height: auto; display: block; padding: 0 0 6px; border: 0; text-align: left; font-weight: 700; font-size: calc(67.5556px * var(--title-scale)); line-height: 1.35; }
+section:where(.stage).cover.cover-centered > p.lead { margin: 12px 0 0; text-align: left; color: #fff; font-weight: 700; font-size: calc(42px * var(--lead-scale, 1)); line-height: 1.35; }
+section:where(.stage).cover.cover-centered > .blocks, section:where(.stage).cover.cover-centered > p.lead + .blocks { margin: auto 0 0; text-align: left; }
+section:where(.stage).cover.cover-centered > .blocks p { color: #fff; }
+
+/* 以前の登壇を本文中で紹介するときの縮小表紙 */
+section .past-cover {
+  display: flex; flex-direction: column; justify-content: center; gap: .5em;
+  width: min(100%, 650px); aspect-ratio: 16 / 9; margin: 0 auto; padding: 6%;
+  background: var(--accent); color: white; text-align: left;
+  font: 700 30px/1.4 "Stage Sans", sans-serif;
+}
+section .past-cover strong { color: inherit; }
+section .past-cover span { font-size: .7em; }
+section .past-cover small { margin-top: 1em; font-size: .47em; }
+section .resource-appendix .past-cover { width: 440px; margin: 0; font-size: 24px; }
+
+/* 横長の図を置く表紙。図の右にタイトルを置く cover-talk と同じ原稿部品を使う。 */
+section.cover:not(.classic, .stage, .cover-talk, .cover-centered):has(.image-block) {
+  display: flex; justify-content: center; gap: 18px;
+  padding: 54px 76px; background: var(--paper);
+}
+section.cover:not(.classic, .stage, .cover-talk, .cover-centered):has(.image-block) > h1 {
+  position: static; margin: 0; padding: 0 0 16px;
+  border-bottom: 3px solid var(--accent); text-align: left; font-size: 48px;
+}
+section.cover:not(.classic, .stage, .cover-talk, .cover-centered):has(.image-block) > p.lead {
+  position: static; margin: 0; color: var(--ink-2); font-size: 26px;
+}
+section.cover:not(.classic, .stage, .cover-talk, .cover-centered):has(.image-block) > .blocks {
+  position: static; flex: none; margin: 12px 0 0;
+}
+section.cover:not(.classic, .stage, .cover-talk, .cover-centered) .image-block img {
+  display: block; max-height: 370px; margin: auto; object-fit: contain;
+}
+section .badge {
+  display: inline-block; padding: .14em .65em; border-radius: .25em;
+  background: var(--accent-l); color: var(--accent-d); font-size: .78em; font-weight: 700;
+}
+section:where(.classic, .stage) { --accent-l: #edf4f6; --accent-d: #2f6273; }
+
+/* 表紙と裏表紙。左に文字の版面、右に560 × 720の面を取り、表と裏を同じ骨組みで組む。
+   文字は本文と同じ Noto Sans JP。題名56 ／ 副題25 ／ 名前26 ／ 肩19 ／ 読み18（px）。
+   飾りは面の色、点の地紋、細い罫、短いアクセントの横棒だけにする。 */
+section:is(.cover.cover-talk, .closing.back-cover) {
+  --jk-paper: var(--paper, #fff);
+  --jk-ink: var(--ink-b, #3a3f44);
+  --jk-ink-2: var(--ink-2, #3d444b);
+  --jk-muted: var(--muted, #69727a);
+  --jk-rule: var(--rule, #d8dce0);
+  --jk-accent: var(--accent);
+  --jk-accent-d: var(--accent-d, #2f6273);
+  --jk-panel: color-mix(in srgb, var(--accent) 5%, var(--accent-l, #edf4f6));
+  --jk-dot: color-mix(in srgb, var(--jk-accent) 26%, var(--jk-panel));
+  --jk-arc: color-mix(in srgb, var(--jk-accent) 20%, var(--jk-panel));
+  --jk-type: "Talk Sans", "Noto Sans JP", "Hiragino Sans", sans-serif;
+  display: flex; flex-direction: column; align-items: stretch; justify-content: center;
+  padding: 150px 584px 176px 76px;
+  background: var(--jk-paper); color: var(--jk-ink);
+  font-family: var(--jk-type); text-align: left;
+}
+/* stage の資料は右の面だけを濃くする。骨組み・文字・挿絵は淡い面と同じ */
+section:is(.cover.cover-talk, .closing.back-cover).stage {
+  --jk-panel: color-mix(in srgb, var(--accent-d, #2f6273) 86%, #0b161b);
+  --jk-dot: color-mix(in srgb, white 12%, var(--jk-panel));
+  --jk-arc: color-mix(in srgb, white 18%, var(--jk-panel));
+}
+section:is(.cover.cover-talk, .closing.back-cover)::before {
+  content: ""; position: absolute; display: block; inset: 0 0 0 auto; width: 560px; height: 100%; margin: 0;
+  background:
+    radial-gradient(circle at 470px 120px, transparent 0 189px, var(--jk-arc) 189px 190.5px, transparent 191px),
+    radial-gradient(circle at 60px 610px, transparent 0 149px, var(--jk-arc) 149px 150.5px, transparent 151px),
+    radial-gradient(circle, var(--jk-dot) 1.3px, transparent 1.6px) 0 0 / 28px 28px,
+    var(--jk-panel);
+  background-position: 0 0, 0 0, 14px 14px, 0 0;
+}
+section:is(.cover.cover-talk, .closing.back-cover) > h1 {
+  position: relative; inset: auto; width: auto; height: auto; min-height: 0; max-width: none;
+  margin: 0; padding: 0; border: 0; background: none;
+  font: 700 56px/1.34 var(--jk-type);
+  font-feature-settings: "palt"; letter-spacing: .02em; text-align: left;
+  word-break: auto-phrase; overflow-wrap: anywhere; text-wrap: balance;
+  color: var(--jk-ink);
+}
+section:is(.cover.cover-talk, .closing.back-cover) > h1::before {
+  content: ""; position: absolute; display: block; inset: -40px auto auto 0;
+  width: 64px; height: 5px; margin: 0; border: 0; background: var(--jk-accent);
+}
+section:is(.cover.cover-talk, .closing.back-cover) > .blocks { display: contents; font-family: inherit; text-align: left; }
+section:is(.cover.cover-talk, .closing.back-cover) > .blocks > .image-block {
+  position: absolute; inset: 0 0 0 auto; width: 560px; height: 720px; margin: 0; padding: 0; z-index: 1;
+}
+section:is(.cover.cover-talk, .closing.back-cover) .image-block img {
+  display: block; width: 100%; height: 100%; max-height: none; margin: 0; object-fit: contain;
+}
+/* 肩：資料名、細い罫、日付や枠 */
+section:is(.cover.cover-talk, .closing.back-cover) .blocks > .kicker {
+  position: absolute; inset: 66px 584px auto 76px; margin: 0;
+  display: flex; align-items: center; gap: 18px; white-space: nowrap;
+  color: var(--jk-accent-d); font: 700 19px/1.4 var(--jk-type); letter-spacing: .14em;
+}
+section:is(.cover.cover-talk, .closing.back-cover) .blocks > .kicker::after {
+  content: ""; flex: 1; height: 1px; background: var(--jk-rule);
+}
+section:is(.cover.cover-talk, .closing.back-cover) .kicker span {
+  order: 2; flex: none; padding: 0; background: none;
+  color: var(--jk-muted); font-size: 17px; font-weight: 400; letter-spacing: .06em;
+}
+section.cover.cover-talk > p.lead, section.cover.cover-talk .blocks > .sub {
+  position: relative; margin: 32px 0 0; max-width: none; color: var(--jk-ink-2);
+  font: 400 25px/1.6 var(--jk-type); letter-spacing: .02em; text-align: left;
+}
+/* 署名：名前と読み */
+section:is(.cover.cover-talk, .closing.back-cover) .blocks > .who,
+section.closing.back-cover > p.lead {
+  position: absolute; inset: auto 584px 62px 76px; margin: 0; padding: 0; border: 0;
+  color: var(--jk-muted); font: 400 18px/1.5 var(--jk-type); letter-spacing: .06em;
+}
+section:is(.cover.cover-talk, .closing.back-cover) .who b {
+  display: block; margin-bottom: 2px; color: var(--jk-ink); font: 700 26px/1.45 var(--jk-type); letter-spacing: .08em;
+}
+/* 裏表紙：題名の下に連絡先 */
+section.closing.back-cover .blocks > p:not(.kicker, .who, .image-block) {
+  position: relative; margin: 30px 0 0;
+  color: var(--jk-ink-2); font: 400 22px/1.6 var(--jk-type); letter-spacing: .04em;
+}
+section.closing.back-cover a { color: inherit; text-decoration: underline; text-decoration-color: var(--jk-rule); text-decoration-thickness: 1px; text-underline-offset: .28em; }
+section:is(.cover.cover-talk, .closing.back-cover) > footer,
+section:is(.cover.cover-talk, .closing.back-cover)::after { display: none; }
+section img { color-scheme: only light; }

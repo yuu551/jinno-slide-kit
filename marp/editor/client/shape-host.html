@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<!-- SVG-Edit を iframe に載せるためのホストページ。/svgedit/marpkit-host.html として配り、
+     相対パス（Editor.js・images・extensions）は npm の svgedit の dist/editor を指す。
+     親（client/shape-edit.mjs）は同一オリジンなので window.svgEditor を直接触る。 -->
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <title>図の形を編集</title>
+  <link href="./svgedit.css" rel="stylesheet" media="all">
+  <style>
+    /* エディター本体（Typora風）に合わせて静かな配色へ。アイコンが白・黄なので道具の帯は暗いまま、彩度を落とす */
+    :root {
+      --main-bg-color: #43484c; --icon-bg-color: #43484c; --icon-bg-color-hover: #2c3033;
+      --top-toolbar-min-height: 44px;
+      --border-color: #5b6166; --canvas-bg-color: #eceeef; --ruler-color: #eceeef; --input-color: #d7dadc;
+    }
+    html, body { margin: 0; height: 100%; overflow: hidden; background: #eceeef; }
+    #container { width: 100%; height: 100%; }
+    /* 今回使わないメニュー（ファイル・書き出し・設定・ホームページ・画像の読み込み・レイヤー） */
+    #main_button, #tool_image, #tool_source, #layer-panel, #sidepanel_handle, #sidepanels, #tool_wireframe { display: none !important; }
+    /* 図の外側（キャンバスの背景）を静かな色に */
+    #workarea { background-color: #eceeef !important; }
+  </style>
+</head>
+<body>
+  <div id="container"></div>
+  <script type="module" src="/svgedit/marpkit-host.js"></script>
+</body>
+</html>

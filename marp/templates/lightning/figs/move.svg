@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1065" height="283" viewBox="0 0 1065 283" font-family="sans-serif" role="img">
+<title>玉の位置を示す3コマの絵コンテ</title>
+<g transform="translate(18 22)">
+<rect x="0" y="0" width="216" height="174" rx="7" fill="white" stroke="#9aa6b0" stroke-width="3"/>
+<path d="M13 131 H203" fill="none" stroke="#9aa6b0" stroke-width="2"/>
+<circle cx="45" cy="105" r="25" fill="#9aa6b0"/>
+<g transform="rotate(0 45 105)">
+<path d="M28 93 Q36 80 49 87" fill="none" stroke="white" stroke-width="4" stroke-linecap="round"/>
+</g>
+<text x="108" y="161" font-size="22" fill="#9aa6b0" text-anchor="middle">1 コマ目</text>
+</g>
+<path d="M242 109 h36 m-9-8 9 8-9 8" fill="none" stroke="#69767a" stroke-width="3"/>
+<g transform="translate(289 22)">
+<rect x="0" y="0" width="216" height="174" rx="7" fill="white" stroke="#9aa6b0" stroke-width="3"/>
+<path d="M13 131 H203" fill="none" stroke="#9aa6b0" stroke-width="2"/>
+<circle cx="108" cy="105" r="25" fill="#9aa6b0"/>
+<g transform="rotate(90 108 105)">
+<path d="M91 93 Q99 80 112 87" fill="none" stroke="white" stroke-width="4" stroke-linecap="round"/>
+</g>
+<text x="108" y="161" font-size="22" fill="#9aa6b0" text-anchor="middle">2 コマ目</text>
+</g>
+<path d="M513 109 h36 m-9-8 9 8-9 8" fill="none" stroke="#69767a" stroke-width="3"/>
+<g transform="translate(560 22)">
+<rect x="0" y="0" width="216" height="174" rx="7" fill="white" stroke="#9aa6b0" stroke-width="3"/>
+<path d="M13 131 H203" fill="none" stroke="#9aa6b0" stroke-width="2"/>
+<circle cx="171" cy="105" r="25" fill="#9aa6b0"/>
+<g transform="rotate(180 171 105)">
+<path d="M154 93 Q162 80 175 87" fill="none" stroke="white" stroke-width="4" stroke-linecap="round"/>
+</g>
+<text x="108" y="161" font-size="22" fill="#9aa6b0" text-anchor="middle">3 コマ目</text>
+</g>
+<path d="M18 212 v15 h757 v-15" stroke="#69767a" stroke-width="3" fill="none"/>
+<text x="397" y="264" font-size="24" fill="#3a3f44" text-anchor="middle">3 コマで 0.75 秒</text>
+
+<style data-jinno-palette="dark" media="(prefers-color-scheme: dark)">
+:root [fill="#3a3f44" i]:not(svg svg, svg svg *, [data-fixed-color], [data-fixed-color] *) { fill: #42344c }
+:root [fill="#9aa6b0" i]:not(svg svg, svg svg *, [data-fixed-color], [data-fixed-color] *) { fill: #a399ad }
+:root [stroke="#69767a" i]:not(svg svg, svg svg *, [data-fixed-color], [data-fixed-color] *) { stroke: #71657b }
+:root [stroke="#9aa6b0" i]:not(svg svg, svg svg *, [data-fixed-color], [data-fixed-color] *) { stroke: #a399ad }
+</style>
+</svg>
