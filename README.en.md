@@ -25,7 +25,7 @@ The copied text includes the page and line number of each note, so when you past
 
 ![Selecting a diagram in the editor, adding a note, copying both notes, and pasting them into Claude Code, which changes only one line on slide 18 and the 質問 (question) label in the diagram](docs/images/agent-notes.gif)
 
-### Present right away
+### Present
 
 Click 発表 (Present) at the top right of the editor to open the audience and presenter windows. The presenter window shows your notes, the next slide, and the elapsed time while you talk!
 
