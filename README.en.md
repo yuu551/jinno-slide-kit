@@ -25,6 +25,17 @@ The copied text includes the page and line number of each note, so when you past
 
 ![Selecting a diagram in the editor, adding a note, copying both notes, and pasting them into Claude Code, which changes only one line on slide 18 and the 質問 (question) label in the diagram](docs/images/agent-notes.gif)
 
+### Present right away
+
+Click 発表 (Present) at the top right of the editor to open the audience and presenter windows. The presenter window shows your notes, the next slide, and the elapsed time while you talk!
+
+![Clicking 発表 (Present) in the editor fills the screen with the slide, then clicking 次へ (Next) in the presenter window updates the current slide, the notes, and the next slide while the elapsed and remaining time count on](docs/images/present.gif)
+
+### Export to PowerPoint too
+
+You can also export to PowerPoint from 書き出し (Export), and the text and shapes stay editable. You can import the file into Google Slides too.
+Code switches to a different font, and PCs without Noto Sans JP show another typeface, so it won’t look quite as polished as the PDF. Think of it as good enough!
+
 ## Ask an AI to build it
 
 The easiest way to start is to give Claude Code or Codex the URL of this repository and ask it to set things up! The AI clones the repository, installs the dependencies, and adds the skill for you. See [the table below](#install-it-yourself) for what you need.
